@@ -138,26 +138,41 @@
     input:checked + .switch:before {
       transform: translateX(26px);
     }
-    .gallery {
+    /* Tech Stack Section */
+    .tech-icons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+      justify-content: center;
+      align-items: center;
+      margin-top: 18px;
+    }
+    .tech-item {
       display: flex;
       flex-direction: column;
       align-items: center;
+      width: 110px;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
-    .gallery img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 10px;
-      margin-bottom: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease;
+    .tech-item img {
+      width: 56px;
+      height: 56px;
+      margin-bottom: 8px;
+      filter: grayscale(30%);
+      transition: filter 0.2s, transform 0.2s;
     }
-    .gallery img:hover {
-      transform: scale(1.05);
+    .tech-item span {
+      font-size: 1em;
+      color: #374151;
+      margin-top: 3px;
     }
-    .hashtag {
-      font-style: italic;
-      color: #4b5563;
-      margin-bottom: 30px;
+    .tech-item:hover {
+      transform: translateY(-7px) scale(1.07);
+      box-shadow: 0 6px 18px rgba(30,64,175,0.10);
+    }
+    .tech-item:hover img {
+      filter: grayscale(0%);
+      transform: scale(1.15);
     }
   </style>
 </head>
@@ -246,6 +261,40 @@
     </ul>
   </section>
 
+  <section id="tech-stack">
+    <h2>Tech Stack</h2>
+    <div class="tech-icons">
+      <div class="tech-item">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" title="Python">
+        <span>Python</span>
+      </div>
+      <div class="tech-item">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++" title="C++">
+        <span>C++</span>
+      </div>
+      <div class="tech-item">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" title="JavaScript">
+        <span>JavaScript</span>
+      </div>
+      <div class="tech-item">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opencv/opencv-original.svg" alt="OpenCV" title="OpenCV">
+        <span>OpenCV</span>
+      </div>
+      <div class="tech-item">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/arduino/arduino-original.svg" alt="Arduino" title="Arduino">
+        <span>Arduino</span>
+      </div>
+      <div class="tech-item">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow" title="TensorFlow">
+        <span>TensorFlow</span>
+      </div>
+      <div class="tech-item">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" title="GitHub">
+        <span>GitHub</span>
+      </div>
+    </div>
+  </section>
+
   <section id="interests">
     <h2>Personal Interests</h2>
     <ul>
@@ -253,23 +302,6 @@
       <li>🏸 Badminton player</li>
       <li>⚽ Loves playing football and tennis</li>
     </ul>
-  </section>
-
-  <section id="gallery">
-    <h2>Gallery</h2>
-    <div class="gallery">
-      <img src="images/runners.jpg" alt="Winning with team">
-      <div class="hashtag">#Runners-Up</div>
-
-      <img src="images/captains.JPG" alt="Inauguration ceremony">
-      <div class="hashtag">#HouseCaptains-elected!</div>
-
-      <img src="images/spl-address.JPG" alt="Speech at podium">
-      <div class="hashtag">#School Pupil Leader address</div>
-
-      <img src="images/farewell.jpeg" alt="With friend">
-      <div class="hashtag">#Farewell to caps!!</div>
-    </div>
   </section>
 
   <section id="github">
