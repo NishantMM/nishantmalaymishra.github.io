@@ -5,26 +5,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Nishant's Portfolio</title>
   <style>
+    :root {
+      --bg: #f8fafc;
+      --text: #1f2937;
+      --card: #ffffff;
+      --accent: #1e40af;
+    }
+    [data-theme="dark"] {
+      --bg: #0f172a;
+      --text: #e2e8f0;
+      --card: #1e293b;
+      --accent: #60a5fa;
+    }
     body {
       font-family: 'Segoe UI', sans-serif;
       margin: 0;
       padding: 0;
-      background: #f4f4f4;
-      color: #333;
+      background: var(--bg);
+      color: var(--text);
+      transition: all 0.3s ease;
     }
     header {
-      background: #2c3e50;
+      background: var(--accent);
       color: white;
       padding: 40px 20px;
       text-align: center;
+      position: relative;
     }
-    header h1 {
-      margin: 0;
-      font-size: 48px;
-    }
-    header p {
-      font-size: 20px;
-      margin-top: 10px;
+    #darkToggle {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: white;
+      color: black;
+      padding: 5px 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
     }
     .container {
       max-width: 1000px;
@@ -33,9 +50,14 @@
     }
     section {
       margin-bottom: 50px;
+      background: var(--card);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      transition: background 0.3s ease;
     }
     h2 {
-      border-bottom: 2px solid #ccc;
+      border-bottom: 2px solid #e5e7eb;
       padding-bottom: 10px;
       margin-bottom: 20px;
     }
@@ -44,34 +66,37 @@
       padding-left: 20px;
     }
     a {
-      color: #3498db;
+      color: var(--accent);
       text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
     }
     .project {
       margin-bottom: 20px;
-      padding: 10px;
-      background-color: #fff;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-    }
-    .project:hover {
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-    footer {
-      background: #2c3e50;
-      color: white;
-      text-align: center;
-      padding: 20px;
     }
     blockquote {
       font-style: italic;
       text-align: center;
-      color: #555;
+      color: #6b7280;
     }
     img.github-badge {
       display: block;
       margin: 0 auto;
       max-width: 100%;
+    }
+    .timeline {
+      display: grid;
+      grid-template-columns: 1fr 3fr;
+      gap: 10px;
+    }
+    .badge {
+      display: inline-block;
+      padding: 5px 10px;
+      background: var(--accent);
+      color: white;
+      border-radius: 5px;
+      margin: 5px 0;
     }
   </style>
 </head>
@@ -79,14 +104,15 @@
 
 <header>
   <h1>Nishant Malay Mishra</h1>
-  <p>AI & Robotics Enthusiast | Creator | Problem Solver</p>
+  <p>AI & Robotics Enthusiast | Based in Bangalore</p>
+  <button id="darkToggle">Toggle Dark Mode</button>
 </header>
 
 <div class="container">
 
   <section id="about">
     <h2>About Me</h2>
-    <p>I’m a passionate AI and robotics enthusiast who enjoys building intelligent systems, automating things with Python, and exploring how software can bring hardware to life. I stay active through sports and long-distance running, and I love solving real-world problems using code.</p>
+    <p>I’m a passionate AI and robotics enthusiast who enjoys building intelligent systems, automating things with Python, and bringing hardware to life with software. I’ve created real-time automation solutions like ASUP and am currently exploring gesture-based control systems, automation, and embedded projects.</p>
   </section>
 
   <section id="quote">
@@ -94,14 +120,24 @@
     <blockquote>"Learning never exhausts the mind, only ignites it further."</blockquote>
   </section>
 
+  <section id="education">
+    <h2>Education Timeline</h2>
+    <div class="timeline">
+      <div>2010 - 2016</div><div>Vagdevi Vilas School, Marathahalli</div>
+      <div>2016 - 2024</div><div>Lake Montfort School</div>
+      <div>2022</div><div>Class 10 – Lake Montfort School</div>
+      <div>2024</div><div>Class 12 – Lake Montfort School</div>
+    </div>
+  </section>
+
   <section id="achievements">
     <h2>Achievements</h2>
     <ul>
-      <li>🏆 VMO Winner- 2016</li>
-      <li>🥇 BASE Quiz Winner – Team Champion - 2019</li>
+      <li>🏆 2016 – VMO Winner</li>
+      <li>🥇 BASE Quiz Winner – Team Champion, 2019</li>
       <li>🎯 Finalist in Talentspire powered by IISc Bangalore – 2022</li>
-      <li>✅ Cleared JEE Mains with a strong rank in 2024 & 2025</li>
-      <li>✅ Cleared JEE Adv in 2025</li>
+      <li>✅ Cleared JEE Mains (2024 & 2025)</li>
+      <li>✅ Cleared JEE Advanced – 2025</li>
     </ul>
   </section>
 
@@ -110,20 +146,20 @@
 
     <div class="project">
       <strong>Gesture-Controlled Robot Maze Simulator</strong><br>
-      <a href="https://github.com/NishantMM/Gesture-Robot-Simulator">GitHub Repo</a>
-      <p>A Python + Pygame + OpenCV project where a robot navigates a dynamically generated maze using hand gestures.</p>
+      <span class="badge"><a href="https://github.com/NishantMM/gesture-robot">GitHub</a></span>
+      <p>A simulation where a robot navigates a maze using real-time hand gestures detected by a webcam. Uses Python, OpenCV, cvzone, and Pygame.</p>
     </div>
 
     <div class="project">
       <strong>Cursor Controller with Hand Gestures</strong><br>
-      <a href="https://github.com/NishantMM/cursor-controller">GitHub Repo</a>
-      <p>Control the mouse cursor using your index finger with OpenCV and PyAutoGUI.</p>
+      <span class="badge"><a href="https://github.com/NishantMM/cursor-controller">GitHub</a></span>
+      <p>Controls your system cursor using index finger gestures via webcam, built with OpenCV and PyAutoGUI. Includes fingertip tracking and gesture filters.</p>
     </div>
 
     <div class="project">
       <strong>ASUP – Automated Substitution Program</strong><br>
-      <a href="https://github.com/NishantMM/ASUP">GitHub Repo</a>
-      <p>A executable program to assign substituion to faculties on leave depending on the availability of other faculties and classes handled in an institution.</p>
+      <span class="badge"><a href="https://github.com/NishantMM/ASUP">GitHub</a></span>
+      <p>A real-time automation system implemented at Lake Montfort School. It assigns teacher substitutions based on availability and class schedules.</p>
     </div>
   </section>
 
@@ -148,7 +184,7 @@
 
   <section id="github">
     <h2>My GitHub Activity</h2>
-    <img class="github-badge" src="https://github-readme-stats.vercel.app/api?username=NishantMM&show_icons=true&theme=default" alt="GitHub Stats">
+    <img class="github-badge" src="https://github-readme-stats.vercel.app/api?username=NishantMM&show_icons=true&theme=default&count_private=true&hide=contribs" alt="GitHub Stats">
   </section>
 
   <section id="contact">
@@ -162,6 +198,14 @@
 <footer>
   <p>© 2025 Nishant Malay Mishra. All rights reserved.</p>
 </footer>
+
+<script>
+  const toggle = document.getElementById('darkToggle');
+  toggle.onclick = () => {
+    document.documentElement.dataset.theme =
+      document.documentElement.dataset.theme === 'dark' ? '' : 'dark';
+  };
+</script>
 
 </body>
 </html>
