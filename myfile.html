@@ -36,12 +36,46 @@
       position: absolute;
       top: 20px;
       right: 20px;
-      background: white;
-      color: black;
-      padding: 5px 10px;
-      border: none;
-      border-radius: 4px;
       cursor: pointer;
+    }
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 24px;
+    }
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 24px;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 4px;
+      bottom: 3px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+    input:checked + .slider {
+      background-color: #2196F3;
+    }
+    input:checked + .slider:before {
+      transform: translateX(26px);
     }
     .container {
       max-width: 1000px;
@@ -53,8 +87,11 @@
       background: var(--card);
       padding: 20px;
       border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-      transition: background 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+    section:hover {
+      transform: scale(1.01);
     }
     h2 {
       border-bottom: 2px solid #e5e7eb;
@@ -78,7 +115,12 @@
     blockquote {
       font-style: italic;
       text-align: center;
-      color: #6b7280;
+      color: #1e40af;
+      font-size: 1.2em;
+      background: #e0f2fe;
+      border-left: 4px solid #0284c7;
+      padding: 15px;
+      border-radius: 10px;
     }
     img.github-badge {
       display: block;
@@ -91,12 +133,24 @@
       gap: 10px;
     }
     .badge {
-      display: inline-block;
-      padding: 5px 10px;
-      background: var(--accent);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-weight: bold;
       color: white;
-      border-radius: 5px;
-      margin: 5px 0;
+      margin: 6px 0;
+    }
+    .badge-code { background-color: #6366f1; }
+    .badge-cursor { background-color: #14b8a6; }
+    .badge-logic { background-color: #f59e0b; }
+    .gallery img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin: 5px;
     }
   </style>
 </head>
@@ -105,7 +159,10 @@
 <header>
   <h1>Nishant Malay Mishra</h1>
   <p>AI & Robotics Enthusiast | Based in Bangalore</p>
-  <button id="darkToggle">Toggle Dark Mode</button>
+  <label id="darkToggle" class="switch">
+    <input type="checkbox" id="darkSwitch">
+    <span class="slider"></span>
+  </label>
 </header>
 
 <div class="container">
@@ -143,22 +200,21 @@
 
   <section id="projects">
     <h2>Projects</h2>
-
     <div class="project">
       <strong>Gesture-Controlled Robot Maze Simulator</strong><br>
-      <span class="badge"><a href="https://github.com/NishantMM/gesture-robot">GitHub</a></span>
+      <span class="badge badge-code">🤖 <a href="https://github.com/NishantMM/Gesture-Robot-Simulator" style="color:white">GitHub</a></span>
       <p>A simulation where a robot navigates a maze using real-time hand gestures detected by a webcam. Uses Python, OpenCV, cvzone, and Pygame.</p>
     </div>
 
     <div class="project">
       <strong>Cursor Controller with Hand Gestures</strong><br>
-      <span class="badge"><a href="https://github.com/NishantMM/cursor-controller">GitHub</a></span>
+      <span class="badge badge-cursor">🖱️ <a href="https://github.com/NishantMM/cursor-controller" style="color:white">GitHub</a></span>
       <p>Controls your system cursor using index finger gestures via webcam, built with OpenCV and PyAutoGUI. Includes fingertip tracking and gesture filters.</p>
     </div>
 
     <div class="project">
       <strong>ASUP – Automated Substitution Program</strong><br>
-      <span class="badge"><a href="https://github.com/NishantMM/ASUP">GitHub</a></span>
+      <span class="badge badge-logic">📅 <a href="https://github.com/NishantMM/ASUP" style="color:white">GitHub</a></span>
       <p>A real-time automation system implemented at Lake Montfort School. It assigns teacher substitutions based on availability and class schedules.</p>
     </div>
   </section>
@@ -182,6 +238,16 @@
     </ul>
   </section>
 
+  <section id="gallery">
+    <h2>Gallery</h2>
+    <div class="gallery">
+      <!-- Add your image paths here -->
+      <img src="img1.jpg" alt="Gallery Image 1">
+      <img src="img2.jpg" alt="Gallery Image 2">
+      <img src="img3.jpg" alt="Gallery Image 3">
+    </div>
+  </section>
+
   <section id="github">
     <h2>My GitHub Activity</h2>
     <img class="github-badge" src="https://github-readme-stats.vercel.app/api?username=NishantMM&show_icons=true&theme=default&count_private=true&hide=contribs" alt="GitHub Stats">
@@ -200,10 +266,9 @@
 </footer>
 
 <script>
-  const toggle = document.getElementById('darkToggle');
-  toggle.onclick = () => {
-    document.documentElement.dataset.theme =
-      document.documentElement.dataset.theme === 'dark' ? '' : 'dark';
+  const toggle = document.getElementById('darkSwitch');
+  toggle.onchange = () => {
+    document.documentElement.dataset.theme = toggle.checked ? 'dark' : '';
   };
 </script>
 
