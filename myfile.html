@@ -59,6 +59,9 @@
     a:hover {
       text-decoration: underline;
     }
+    .project {
+      margin-bottom: 30px;
+    }
     .project-badge {
       display: inline-block;
       padding: 6px 12px;
@@ -135,15 +138,15 @@
       transform: translateX(26px);
     }
     .gallery {
-      position: relative;
-      max-width: 100%;
-      margin: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
     .gallery img {
-      width: 100%;
-      max-height: 500px;
-      object-fit: cover;
+      max-width: 100%;
+      height: auto;
       border-radius: 10px;
+      margin-bottom: 10px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       transition: transform 0.3s ease;
     }
@@ -153,12 +156,7 @@
     .hashtag {
       font-style: italic;
       color: #4b5563;
-      text-align: center;
-      margin: 10px 0 30px;
-    }
-    .project a {
-      display: inline-block;
-      margin-top: 4px;
+      margin-bottom: 30px;
     }
   </style>
 </head>
@@ -177,20 +175,112 @@
 </header>
 
 <div class="container">
+
+  <section id="about">
+    <h2>About Me</h2>
+    <p>I’m a passionate AI and robotics enthusiast who enjoys building intelligent systems, automating things with Python, and bringing hardware to life with software. I’ve created real-time automation solutions like ASUP and am currently exploring gesture-based control systems, automation, and embedded projects.</p>
+  </section>
+
+  <section id="quote">
+    <h2>My Motto</h2>
+    <blockquote>"Learning never exhausts the mind, only ignites it further."</blockquote>
+  </section>
+
+  <section id="education">
+    <h2>Education Timeline</h2>
+    <ul>
+      <li><strong>2010 - 2016</strong> – Vagdevi Vilas School, Marathahalli</li>
+      <li><strong>2016 - 2024</strong> – Lake Montfort School</li>
+      <li><strong>2022</strong> – Class 10, Lake Montfort School</li>
+      <li><strong>2024</strong> – Class 12, Lake Montfort School</li>
+    </ul>
+  </section>
+
+  <section id="achievements">
+    <h2>Achievements</h2>
+    <ul>
+      <li>🏆 2016 – VMO Winner</li>
+      <li>🥇 BASE Quiz Winner – Team Champion, 2019</li>
+      <li>🎯 Finalist in Talentspire powered by IISc Bangalore – 2022</li>
+      <li>✅ Cleared JEE Mains with a strong rank in 2024 & 2025</li>
+      <li>✅ Cleared JEE Adv in 2025</li>
+    </ul>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+
+    <div class="project">
+      <strong><span class="project-badge badge-purple">🤖 Gesture Robot</span></strong><br>
+      <a href="https://github.com/NishantMM/Gesture-Robot-Simulator">Gesture-Controlled Robot Maze Simulator</a>
+      <p>Python + Pygame + OpenCV project where a robot navigates a dynamically generated maze using hand gestures for directional control and voice/keyboard overrides. Developed using cvzone and custom logic.</p>
+    </div>
+
+    <div class="project">
+      <strong><span class="project-badge badge-teal">🖱️ Cursor Control</span></strong><br>
+      <a href="https://github.com/NishantMM/cursor-controller">Cursor Controller with Hand Gestures</a>
+      <p>Uses OpenCV and PyAutoGUI to track hand gestures and control the mouse cursor. Designed for accessibility and touchless computing.</p>
+    </div>
+
+    <div class="project">
+      <strong><span class="project-badge badge-orange">📅 ASUP System</span></strong><br>
+      <a href="https://github.com/NishantMM/ASUP">ASUP – Automated Substitution Program</a>
+      <p>A real-time program implemented in my school that dynamically assigns teacher substitutions based on availability and class schedules.</p>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <ul>
+      <li>Programming: Python, C++, JavaScript</li>
+      <li>Libraries: OpenCV, Pygame, cvzone, PyAutoGUI</li>
+      <li>Robotics: Arduino, ESP32, Relay Modules, MicroPython</li>
+      <li>AI/ML: Scikit-learn, TensorFlow (learning), NumPy, pandas</li>
+    </ul>
+  </section>
+
+  <section id="interests">
+    <h2>Personal Interests</h2>
+    <ul>
+      <li>🏃‍♂️ Long-distance runner</li>
+      <li>🏸 Badminton player</li>
+      <li>⚽ Loves playing football and tennis</li>
+    </ul>
+  </section>
+
   <section id="gallery">
     <h2>Gallery</h2>
     <div class="gallery">
-      <img src="/mnt/data/1668606224364.jpg" alt="#VictoryDay #SchoolChampions">
+      <img src="/mnt/data/1668606224364.jpg" alt="Winning with team">
       <div class="hashtag">#VictoryDay #SchoolChampions</div>
-      <img src="/mnt/data/DSC_0916.JPG" alt="#Inauguration #LeadershipRole">
+
+      <img src="/mnt/data/DSC_0916.JPG" alt="Inauguration ceremony">
       <div class="hashtag">#Inauguration #LeadershipRole</div>
-      <img src="/mnt/data/DSC_1351.JPG" alt="#PublicSpeaking #Investiture">
+
+      <img src="/mnt/data/DSC_1351.JPG" alt="Speech at podium">
       <div class="hashtag">#PublicSpeaking #Investiture</div>
-      <img src="/mnt/data/WhatsApp Image 2023-02-10 at 6.33.46 PM.jpeg" alt="#FarewellFeels #Memories">
+
+      <img src="/mnt/data/WhatsApp Image 2023-02-10 at 6.33.46 PM.jpeg" alt="With friend">
       <div class="hashtag">#FarewellFeels #Memories</div>
     </div>
   </section>
+
+  <section id="github">
+    <h2>My GitHub Activity</h2>
+    <img class="github-badge" src="https://github-readme-stats.vercel.app/api?username=NishantMM&show_icons=true&count_private=true&theme=default" alt="GitHub Stats">
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:nishant7937@gmail.com">nishant7937@gmail.com</a></p>
+    <p>GitHub: <a href="https://github.com/NishantMM" target="_blank">github.com/NishantMM</a></p>
+  </section>
+
 </div>
+
+<footer>
+  <p style="text-align: center; padding: 20px; color: gray">© 2025 Nishant Malay Mishra. All rights reserved.</p>
+</footer>
 
 <script>
   const toggle = document.getElementById('modeToggle');
