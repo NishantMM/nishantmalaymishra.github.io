@@ -6,36 +6,75 @@
   <title>Nishant's Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Fira+Mono&display=swap" rel="stylesheet">
   <style>
-    /* THEME: Cool Mint & Night with SCROLL REVEAL */
+    :root {
+      --primary: #253858;
+      --secondary: #42526e;
+      --accent: #0065ff;
+      --light-bg: #f7fafc;
+      --light-card: #fff;
+      --light-head: #eaeffc;
+      --light-border: #e3e8ee;
+      --light-shadow: rgba(37,56,88,0.06);
+
+      --dark-bg: #171c26;
+      --dark-card: #232b3a;
+      --dark-head: #253858;
+      --dark-border: #30384b;
+      --dark-shadow: rgba(0,0,0,0.12);
+
+      --text-main: #253858;
+      --text-secondary: #42526e;
+      --text-invert: #fff;
+      --badge-email: #d93025;
+      --badge-github: #24292e;
+      --badge-linkedin: #0077b5;
+    }
     body {
       font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background: linear-gradient(135deg, #e0fff7 0%, #b2f0e6 100%);
-      color: #183153;
+      background: var(--light-bg);
+      color: var(--text-main);
       min-height: 100vh;
+      transition: background 0.4s, color 0.4s;
+    }
+    body.dark {
+      background: var(--dark-bg);
+      color: var(--text-invert);
     }
     header {
-      background: linear-gradient(90deg, #20bfa9 0%, #7de2d1 100%);
-      color: #183153;
-      padding: 40px 20px 30px 20px;
+      background: var(--light-head);
+      color: var(--primary);
+      padding: 44px 20px 30px 20px;
       text-align: left;
       display: flex;
       align-items: center;
       border-bottom-left-radius: 60px 30px;
-      box-shadow: 0 4px 20px rgba(32,191,169,0.08);
+      box-shadow: 0 4px 20px var(--light-shadow);
       position: relative;
+      transition: background 0.4s, color 0.4s;
+    }
+    body.dark header {
+      background: var(--dark-head);
+      color: var(--text-invert);
+      box-shadow: 0 4px 20px var(--dark-shadow);
     }
     .profile-pic {
       width: 115px;
       height: 115px;
       border-radius: 50%;
       object-fit: cover;
-      box-shadow: 0 2px 8px rgba(32,191,169,0.18);
+      box-shadow: 0 2px 8px var(--light-shadow);
       margin-right: 32px;
       border: 4px solid #fff;
-      background: #e0fff7;
+      background: #e0e4ea;
       flex-shrink: 0;
+      transition: box-shadow 0.4s;
+    }
+    body.dark .profile-pic {
+      box-shadow: 0 2px 8px var(--dark-shadow);
+      border: 4px solid var(--dark-card);
+      background: var(--dark-card);
     }
     .header-content {
       flex: 1;
@@ -52,22 +91,22 @@
     .typing-desc {
       font-family: 'Fira Mono', monospace;
       font-size: 21px;
-      color: #1d6f5f;
+      color: var(--accent);
       padding-top: 4px;
       min-height: 32px;
       white-space: nowrap;
       overflow: hidden;
-      border-right: .15em solid #20bfa9;
-      animation: typing 4s steps(38, end) 1, blink-caret 0.7s infinite;
-      width: 0;
-      animation-fill-mode: forwards;
+      border-right: .13em solid var(--accent);
+      animation: blink-caret 0.7s infinite;
+      background: transparent;
+      transition: color 0.4s, border-color 0.4s;
     }
-    @keyframes typing {
-      from { width: 0 }
-      to { width: 32ch }
+    body.dark .typing-desc {
+      color: #89b4fa;
+      border-color: #89b4fa;
     }
     @keyframes blink-caret {
-      0%, 100% { border-color: #20bfa9; }
+      0%, 100% { border-color: inherit; }
       50% { border-color: transparent; }
     }
     .container {
@@ -77,11 +116,11 @@
     }
     section {
       margin-bottom: 50px;
-      background: rgba(255,255,255,0.82);
+      background: var(--light-card);
       padding: 22px 20px 18px 20px;
       border-radius: 12px;
-      box-shadow: 0 2px 12px rgba(32,191,169,0.07);
-      transition: transform 0.3s, opacity 0.7s cubic-bezier(.33,.66,.66,1);
+      box-shadow: 0 2px 12px var(--light-shadow);
+      transition: transform 0.3s, background 0.4s, color 0.4s, box-shadow 0.4s;
       opacity: 0;
       transform: translateY(50px);
       will-change: opacity, transform;
@@ -90,26 +129,37 @@
       opacity: 1;
       transform: none;
     }
+    body.dark section {
+      background: var(--dark-card);
+      color: var(--text-invert);
+      box-shadow: 0 2px 12px var(--dark-shadow);
+    }
     h2 {
-      border-bottom: 2px solid #b2f0e6;
+      border-bottom: 2px solid var(--light-border);
       padding-bottom: 10px;
       margin-bottom: 20px;
       font-weight: 600;
-      color: #20bfa9;
+      color: var(--accent);
       letter-spacing: 1.2px;
+      transition: color 0.4s, border-color 0.4s;
+    }
+    body.dark h2 {
+      color: #89b4fa;
+      border-bottom: 2px solid var(--dark-border);
     }
     ul {
       list-style-type: disc;
       padding-left: 23px;
     }
     a {
-      color: #0ea68a;
+      color: var(--accent);
       text-decoration: none;
       word-break: break-all;
+      transition: color 0.3s;
     }
     a:hover {
       text-decoration: underline;
-      color: #183153;
+      color: var(--secondary);
     }
     .project {
       margin-bottom: 32px;
@@ -136,32 +186,42 @@
       color: #fff;
       margin-right: 10px;
       margin-bottom: 4px;
-      background: linear-gradient(90deg, #20bfa9 80%, #7de2d1 100%);
-      box-shadow: 0 2px 8px rgba(32,191,169,0.19);
+      background: var(--accent);
+      box-shadow: 0 2px 8px var(--light-shadow);
       transition: background 0.25s, box-shadow 0.25s;
       cursor: pointer;
       border: none;
       outline: none;
       text-decoration: none !important;
     }
-    .project-badge.purple { background: linear-gradient(90deg, #6d28d9 80%, #a78bfa 100%);}
-    .project-badge.teal { background: linear-gradient(90deg, #0d9488 80%, #5eead4 100%);}
-    .project-badge.orange { background: linear-gradient(90deg, #ea580c 80%, #fdba74 100%);}
+    .project-badge.purple { background: #7356bf;}
+    .project-badge.teal { background: #207868;}
+    .project-badge.orange { background: #bf692f;}
     .project-desc {
       flex: 1 1 350px;
       font-size: 17px;
-      color: #2c3e50;
+      color: var(--text-secondary);
       margin-top: 2px;
+      transition: color 0.4s;
+    }
+    body.dark .project-desc {
+      color: #b2c1e0;
     }
     blockquote {
-      background: #e0fff7;
-      color: #1d6f5f;
+      background: #e5ecf8;
+      color: #24467c;
       font-style: italic;
       text-align: center;
       padding: 18px 18px 18px 22px;
-      border-left: 5px solid #20bfa9;
+      border-left: 5px solid var(--accent);
       border-radius: 8px;
       margin: 0 0 10px 0;
+      transition: background 0.4s, color 0.4s, border-color 0.4s;
+    }
+    body.dark blockquote {
+      background: #202739;
+      color: #dbeafe;
+      border-left: 5px solid #89b4fa;
     }
     .tech-icons {
       display: flex;
@@ -194,12 +254,16 @@
     }
     .tech-item span {
       font-size: 1em;
-      color: #374151;
+      color: var(--secondary);
       margin-top: 3px;
+      transition: color 0.4s;
+    }
+    body.dark .tech-item span {
+      color: #e6eaff;
     }
     .tech-item:hover {
       transform: translateY(-7px) scale(1.07);
-      box-shadow: 0 6px 18px rgba(32,191,169,0.14);
+      box-shadow: 0 6px 18px var(--light-shadow);
     }
     .tech-item:hover img {
       filter: grayscale(0%);
@@ -225,16 +289,19 @@
       align-items: center;
       padding: 7px 16px 7px 12px;
       border-radius: 22px;
-      background: linear-gradient(90deg, #20bfa9 80%, #7de2d1 100%);
+      background: var(--accent);
       color: #fff;
       font-weight: 600;
       font-size: 16px;
       text-decoration: none;
-      transition: background 0.24s, box-shadow 0.24s;
-      box-shadow: 0 2px 8px rgba(32,191,169,0.14);
+      transition: background 0.24s, box-shadow 0.24s, color 0.24s;
+      box-shadow: 0 2px 8px var(--light-shadow);
       border: none;
       outline: none;
     }
+    .badge-link.email { background: var(--badge-email);}
+    .badge-link.github { background: var(--badge-github);}
+    .badge-link.linkedin { background: var(--badge-linkedin);}
     .badge-link img {
       width: 22px;
       height: 22px;
@@ -243,10 +310,71 @@
       background: #fff;
       padding: 2px;
     }
-    .badge-link:hover {
-      background: linear-gradient(90deg, #7de2d1 10%, #20bfa9 100%);
-      color: #183153;
-      box-shadow: 0 4px 16px rgba(32,191,169,0.17);
+    .badge-link:hover, .badge-link:focus {
+      background: #fff;
+      color: var(--accent);
+      box-shadow: 0 4px 16px var(--light-shadow);
+    }
+    .badge-link.email:hover, .badge-link.email:focus { color: var(--badge-email);}
+    .badge-link.github:hover, .badge-link.github:focus { color: var(--badge-github);}
+    .badge-link.linkedin:hover, .badge-link.linkedin:focus { color: var(--badge-linkedin);}
+    .badge-link:hover img, .badge-link:focus img {
+      background: #eaeaea;
+    }
+    .dark .badge-link:hover, .dark .badge-link:focus {
+      color: #fff;
+      background: #333;
+    }
+    /* Toggle Button */
+    .toggle-container {
+      position: fixed;
+      top: 20px;
+      right: 24px;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .toggle-label {
+      font-size: 15px;
+      font-family: inherit;
+      color: var(--secondary);
+      transition: color 0.4s;
+      cursor: pointer;
+      user-select: none;
+    }
+    body.dark .toggle-label { color: #b2c1e0; }
+    .toggle-switch {
+      width: 46px;
+      height: 26px;
+      border-radius: 18px;
+      background: #d7e7fa;
+      position: relative;
+      display: inline-block;
+      vertical-align: middle;
+      transition: background 0.4s;
+      cursor: pointer;
+    }
+    body.dark .toggle-switch { background: #233150; }
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .toggle-slider {
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 20px;
+      height: 20px;
+      background: #fff;
+      border-radius: 50%;
+      transition: left 0.3s, background 0.4s;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    }
+    .toggle-switch input:checked + .toggle-slider {
+      left: 23px;
+      background: var(--accent);
     }
     @media (max-width: 660px) {
       header {
@@ -259,6 +387,10 @@
       }
       .header-content {
         min-width: 0;
+      }
+      .toggle-container {
+        right: 10px;
+        top: 10px;
       }
     }
     @media (max-width: 500px) {
@@ -287,13 +419,19 @@
 </head>
 <body>
 
+<div class="toggle-container">
+  <label class="toggle-label" for="modeToggle">Dark mode</label>
+  <span class="toggle-switch">
+    <input type="checkbox" id="modeToggle" aria-label="Toggle dark mode">
+    <span class="toggle-slider"></span>
+  </span>
+</div>
+
 <header>
   <img src="images/profile.jpg" alt="Nishant Malay Mishra" class="profile-pic">
   <div class="header-content">
     <h1>Nishant Malay Mishra</h1>
-    <div class="typing-desc" id="typewriter">
-      AI & Robotics Enthusiast | Based in Bangalore
-    </div>
+    <div class="typing-desc" id="typewriter"></div>
   </div>
 </header>
 
@@ -332,21 +470,18 @@
 
   <section id="projects">
     <h2>Projects</h2>
-
     <div class="project">
       <a class="project-badge purple" href="https://github.com/NishantMM/Gesture-Robot-Simulator" target="_blank">
         🤖 Gesture Robot
       </a>
       <span class="project-desc">Gesture-Controlled Robot Maze Simulator — Python + Pygame + OpenCV project where a robot navigates a dynamically generated maze using hand gestures for control and voice/keyboard overrides. Developed using cvzone and custom logic.</span>
     </div>
-
     <div class="project">
       <a class="project-badge teal" href="https://github.com/NishantMM/cursor-controller" target="_blank">
         🖱️ Cursor Control
       </a>
       <span class="project-desc">Cursor Controller with Hand Gestures — Uses OpenCV and PyAutoGUI to track hand gestures and control the mouse cursor. Designed for accessibility and touchless computing.</span>
     </div>
-
     <div class="project">
       <a class="project-badge orange" href="https://github.com/NishantMM/ASUP" target="_blank">
         📅 ASUP System
@@ -420,15 +555,15 @@
   <section id="contact">
     <h2>Contact</h2>
     <div class="contact-badges">
-      <a class="badge-link" href="mailto:nishant7937@gmail.com" target="_blank">
+      <a class="badge-link email" href="mailto:nishant7937@gmail.com" target="_blank">
         <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/gmail.svg" alt="Gmail" style="background:#fff;">
         Email
       </a>
-      <a class="badge-link" href="https://github.com/NishantMM" target="_blank">
+      <a class="badge-link github" href="https://github.com/NishantMM" target="_blank">
         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub">
         GitHub
       </a>
-      <a class="badge-link" href="https://www.linkedin.com/in/nishantmalaymishra/" target="_blank">
+      <a class="badge-link linkedin" href="https://www.linkedin.com/in/nishantmalaymishra/" target="_blank">
         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn">
         LinkedIn
       </a>
@@ -464,6 +599,56 @@
   window.addEventListener('DOMContentLoaded', () => {
     onScroll();
     setTimeout(onScroll, 100); // ensure for slow loads
+  });
+
+  // Typewriter effect: continuous loop
+  const typeTarget = document.getElementById('typewriter');
+  const sentences = [
+    "AI & Robotics Enthusiast | Based in Bangalore"
+    // Add more phrases here to cycle through if you wish
+  ];
+  let sentenceIndex = 0;
+  let charIndex = 0;
+  let typing = true;
+  function typeWriterLoop() {
+    const current = sentences[sentenceIndex];
+    if (typing) {
+      if (charIndex <= current.length) {
+        typeTarget.textContent = current.slice(0, charIndex);
+        charIndex++;
+        setTimeout(typeWriterLoop, 65);
+      } else {
+        typing = false;
+        setTimeout(typeWriterLoop, 1500); // pause before erasing
+      }
+    } else {
+      if (charIndex >= 0) {
+        typeTarget.textContent = current.slice(0, charIndex);
+        charIndex--;
+        setTimeout(typeWriterLoop, 30);
+      } else {
+        typing = true;
+        sentenceIndex = (sentenceIndex + 1) % sentences.length;
+        setTimeout(typeWriterLoop, 600); // pause before typing next
+      }
+    }
+  }
+  typeWriterLoop();
+
+  // Dark mode toggle
+  const toggle = document.getElementById('modeToggle');
+  // Use local storage for persistence
+  if(window.localStorage.getItem('theme') === 'dark') {
+    document.body.classList.add('dark');
+    toggle.checked = true;
+  }
+  toggle.addEventListener('change', () => {
+    document.body.classList.toggle('dark');
+    if(document.body.classList.contains('dark')) {
+      window.localStorage.setItem('theme', 'dark');
+    } else {
+      window.localStorage.setItem('theme', 'light');
+    }
   });
 </script>
 
