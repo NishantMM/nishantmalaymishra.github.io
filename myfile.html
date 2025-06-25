@@ -2,80 +2,30 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nishant's Portfolio</title>
   <style>
-    :root {
-      --bg: #f8fafc;
-      --text: #1f2937;
-      --card: #ffffff;
-      --accent: #1e40af;
-    }
-    [data-theme="dark"] {
-      --bg: #0f172a;
-      --text: #e2e8f0;
-      --card: #1e293b;
-      --accent: #60a5fa;
-    }
     body {
       font-family: 'Segoe UI', sans-serif;
       margin: 0;
       padding: 0;
-      background: var(--bg);
-      color: var(--text);
-      transition: all 0.3s ease;
+      background: #f8fafc;
+      color: #1f2937;
+      transition: background 0.5s, color 0.5s;
     }
     header {
-      background: var(--accent);
+      background: #1e40af;
       color: white;
       padding: 40px 20px;
       text-align: center;
-      position: relative;
     }
-    #darkToggle {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      cursor: pointer;
+    header h1 {
+      margin: 0;
+      font-size: 48px;
     }
-    .switch {
-      position: relative;
-      display: inline-block;
-      width: 50px;
-      height: 24px;
-    }
-    .switch input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-    .slider {
-      position: absolute;
-      cursor: pointer;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: #ccc;
-      transition: .4s;
-      border-radius: 24px;
-    }
-    .slider:before {
-      position: absolute;
-      content: "";
-      height: 18px;
-      width: 18px;
-      left: 4px;
-      bottom: 3px;
-      background-color: white;
-      transition: .4s;
-      border-radius: 50%;
-    }
-    input:checked + .slider {
-      background-color: #2196F3;
-    }
-    input:checked + .slider:before {
-      transform: translateX(26px);
+    header p {
+      font-size: 20px;
+      margin-top: 10px;
     }
     .container {
       max-width: 1000px;
@@ -84,11 +34,11 @@
     }
     section {
       margin-bottom: 50px;
-      background: var(--card);
+      background: white;
       padding: 20px;
       border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      transition: background 0.3s ease, transform 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      transition: transform 0.3s;
     }
     section:hover {
       transform: scale(1.01);
@@ -103,66 +53,118 @@
       padding-left: 20px;
     }
     a {
-      color: var(--accent);
+      color: #1d4ed8;
       text-decoration: none;
     }
     a:hover {
       text-decoration: underline;
     }
-    .project {
-      margin-bottom: 20px;
-    }
-    blockquote {
-      font-style: italic;
-      text-align: center;
-      color: #1e40af;
-      font-size: 1.2em;
-      background: #e0f2fe;
-      border-left: 4px solid #0284c7;
-      padding: 15px;
-      border-radius: 10px;
-    }
-    img.github-badge {
-      display: block;
-      margin: 0 auto;
-      max-width: 100%;
-    }
-    .timeline {
-      display: grid;
-      grid-template-columns: 1fr 3fr;
-      gap: 10px;
-    }
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
+    .project-badge {
+      display: inline-block;
       padding: 6px 12px;
       border-radius: 20px;
       font-weight: bold;
       color: white;
-      margin: 6px 0;
+      margin-bottom: 6px;
     }
-    .badge-code { background-color: #6366f1; }
-    .badge-cursor { background-color: #14b8a6; }
-    .badge-logic { background-color: #f59e0b; }
-    .gallery img {
-      width: 100px;
-      height: 100px;
-      object-fit: cover;
+    .badge-purple { background: #6d28d9; }
+    .badge-teal { background: #0d9488; }
+    .badge-orange { background: #ea580c; }
+    blockquote {
+      background: #e0f2fe;
+      color: #0c4a6e;
+      font-style: italic;
+      text-align: center;
+      padding: 20px;
+      border-left: 5px solid #0284c7;
       border-radius: 8px;
-      margin: 5px;
+    }
+    .dark {
+      background: #0f172a;
+      color: #f1f5f9;
+    }
+    .dark section {
+      background: #1e293b;
+      box-shadow: 0 2px 8px rgba(255,255,255,0.05);
+    }
+    .toggle-container {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .slider {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+    }
+    .slider input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider .switch {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 34px;
+    }
+    .slider .switch:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+    input:checked + .switch {
+      background-color: #4ade80;
+    }
+    input:checked + .switch:before {
+      transform: translateX(26px);
+    }
+    .gallery {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .gallery img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .hashtag {
+      font-style: italic;
+      color: #4b5563;
+      margin-bottom: 30px;
     }
   </style>
 </head>
 <body>
 
+<div class="toggle-container">
+  <label class="slider">
+    <input type="checkbox" id="modeToggle">
+    <span class="switch"></span>
+  </label>
+</div>
+
 <header>
   <h1>Nishant Malay Mishra</h1>
   <p>AI & Robotics Enthusiast | Based in Bangalore</p>
-  <label id="darkToggle" class="switch">
-    <input type="checkbox" id="darkSwitch">
-    <span class="slider"></span>
-  </label>
 </header>
 
 <div class="container">
@@ -179,12 +181,12 @@
 
   <section id="education">
     <h2>Education Timeline</h2>
-    <div class="timeline">
-      <div>2010 - 2016</div><div>Vagdevi Vilas School, Marathahalli</div>
-      <div>2016 - 2024</div><div>Lake Montfort School</div>
-      <div>2022</div><div>Class 10 – Lake Montfort School</div>
-      <div>2024</div><div>Class 12 – Lake Montfort School</div>
-    </div>
+    <ul>
+      <li><strong>2010 - 2016</strong> – Vagdevi Vilas School, Marathahalli</li>
+      <li><strong>2016 - 2024</strong> – Lake Montfort School</li>
+      <li><strong>2022</strong> – Class 10, Lake Montfort School</li>
+      <li><strong>2024</strong> – Class 12, Lake Montfort School</li>
+    </ul>
   </section>
 
   <section id="achievements">
@@ -193,29 +195,33 @@
       <li>🏆 2016 – VMO Winner</li>
       <li>🥇 BASE Quiz Winner – Team Champion, 2019</li>
       <li>🎯 Finalist in Talentspire powered by IISc Bangalore – 2022</li>
-      <li>✅ Cleared JEE Mains (2024 & 2025)</li>
-      <li>✅ Cleared JEE Advanced – 2025</li>
+      <li>✅ Cleared JEE Mains with a strong rank in 2024 & 2025</li>
+      <li>✅ Cleared JEE Adv in 2025</li>
     </ul>
   </section>
 
   <section id="projects">
     <h2>Projects</h2>
+
     <div class="project">
+      <span class="project-badge badge-purple">🤖 Gesture Robot</span><br>
       <strong>Gesture-Controlled Robot Maze Simulator</strong><br>
-      <span class="badge badge-code">🤖 <a href="https://github.com/NishantMM/Gesture-Robot-Simulator" style="color:white">GitHub</a></span>
-      <p>A simulation where a robot navigates a maze using real-time hand gestures detected by a webcam. Uses Python, OpenCV, cvzone, and Pygame.</p>
+      <a href="https://github.com/NishantMM/Gesture-Robot-Simulator">GitHub Repo</a>
+      <p>Python + Pygame + OpenCV project where a robot navigates a dynamically generated maze using hand gestures for directional control and voice/keyboard overrides. Developed using cvzone and custom logic.</p>
     </div>
 
     <div class="project">
+      <span class="project-badge badge-teal">🖱️ Cursor Control</span><br>
       <strong>Cursor Controller with Hand Gestures</strong><br>
-      <span class="badge badge-cursor">🖱️ <a href="https://github.com/NishantMM/cursor-controller" style="color:white">GitHub</a></span>
-      <p>Controls your system cursor using index finger gestures via webcam, built with OpenCV and PyAutoGUI. Includes fingertip tracking and gesture filters.</p>
+      <a href="https://github.com/NishantMM/cursor-controller">GitHub Repo</a>
+      <p>Uses OpenCV and PyAutoGUI to track hand gestures and control the mouse cursor. Designed for accessibility and touchless computing.</p>
     </div>
 
     <div class="project">
+      <span class="project-badge badge-orange">📅 ASUP System</span><br>
       <strong>ASUP – Automated Substitution Program</strong><br>
-      <span class="badge badge-logic">📅 <a href="https://github.com/NishantMM/ASUP" style="color:white">GitHub</a></span>
-      <p>A real-time automation system implemented at Lake Montfort School. It assigns teacher substitutions based on availability and class schedules.</p>
+      <a href="https://github.com/NishantMM/ASUP">GitHub Repo</a>
+      <p>A real-time program implemented in my school that dynamically assigns teacher substitutions based on availability and class schedules.</p>
     </div>
   </section>
 
@@ -241,16 +247,23 @@
   <section id="gallery">
     <h2>Gallery</h2>
     <div class="gallery">
-      <!-- Add your image paths here -->
-      <img src="img1.jpg" alt="Gallery Image 1">
-      <img src="img2.jpg" alt="Gallery Image 2">
-      <img src="img3.jpg" alt="Gallery Image 3">
+      <img src="/mnt/data/1668606224364.jpg" alt="Winning with team">
+      <div class="hashtag">#VictoryDay #SchoolChampions</div>
+
+      <img src="/mnt/data/DSC_0916.JPG" alt="Inauguration ceremony">
+      <div class="hashtag">#Inauguration #LeadershipRole</div>
+
+      <img src="/mnt/data/DSC_1351.JPG" alt="Speech at podium">
+      <div class="hashtag">#PublicSpeaking #Investiture</div>
+
+      <img src="/mnt/data/WhatsApp Image 2023-02-10 at 6.33.46 PM.jpeg" alt="With friend">
+      <div class="hashtag">#FarewellFeels #Memories</div>
     </div>
   </section>
 
   <section id="github">
     <h2>My GitHub Activity</h2>
-    <img class="github-badge" src="https://github-readme-stats.vercel.app/api?username=NishantMM&show_icons=true&theme=default&count_private=true&hide=contribs" alt="GitHub Stats">
+    <img class="github-badge" src="https://github-readme-stats.vercel.app/api?username=NishantMM&show_icons=true&count_private=true&theme=default" alt="GitHub Stats">
   </section>
 
   <section id="contact">
@@ -262,14 +275,14 @@
 </div>
 
 <footer>
-  <p>© 2025 Nishant Malay Mishra. All rights reserved.</p>
+  <p style="text-align: center; padding: 20px; color: gray">© 2025 Nishant Malay Mishra. All rights reserved.</p>
 </footer>
 
 <script>
-  const toggle = document.getElementById('darkSwitch');
-  toggle.onchange = () => {
-    document.documentElement.dataset.theme = toggle.checked ? 'dark' : '';
-  };
+  const toggle = document.getElementById('modeToggle');
+  toggle.addEventListener('change', () => {
+    document.body.classList.toggle('dark');
+  });
 </script>
 
 </body>
