@@ -4,141 +4,156 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nishant's Portfolio</title>
+  <!-- Google Fonts for a fresh look -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Fira+Mono&display=swap" rel="stylesheet">
   <style>
+    /* THEME: Cool Mint & Night */
     body {
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background: #f8fafc;
-      color: #1f2937;
+      background: linear-gradient(135deg, #e0fff7 0%, #b2f0e6 100%);
+      color: #183153;
       transition: background 0.5s, color 0.5s;
+      min-height: 100vh;
     }
     header {
-      background: #1e40af;
-      color: white;
-      padding: 40px 20px;
-      text-align: center;
+      background: linear-gradient(90deg, #20bfa9 0%, #7de2d1 100%);
+      color: #183153;
+      padding: 40px 20px 30px 20px;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      border-bottom-left-radius: 60px 30px;
+      box-shadow: 0 4px 20px rgba(32,191,169,0.08);
+      position: relative;
+    }
+    .profile-pic {
+      width: 115px;
+      height: 115px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 2px 8px rgba(32,191,169,0.18);
+      margin-right: 32px;
+      border: 4px solid #fff;
+      background: #e0fff7;
+      flex-shrink: 0;
+    }
+    .header-content {
+      flex: 1;
+      min-width: 0;
     }
     header h1 {
-      margin: 0;
-      font-size: 48px;
+      margin: 0 0 7px 0;
+      font-size: 44px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      line-height: 1.1;
+      word-break: break-all;
     }
-    header p {
-      font-size: 20px;
-      margin-top: 10px;
+    .typing-desc {
+      font-family: 'Fira Mono', monospace;
+      font-size: 21px;
+      color: #1d6f5f;
+      padding-top: 4px;
+      min-height: 32px;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: .15em solid #20bfa9;
+      /* For animation fallback on unsupported */
+      animation: typing 4s steps(38, end) 1, blink-caret 0.7s infinite;
+      width: 0;
+      animation-fill-mode: forwards;
+    }
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 32ch }
+    }
+    @keyframes blink-caret {
+      0%, 100% { border-color: #20bfa9; }
+      50% { border-color: transparent; }
     }
     .container {
       max-width: 1000px;
       margin: 0 auto;
-      padding: 30px 20px;
+      padding: 35px 18px 10px 18px;
     }
     section {
       margin-bottom: 50px;
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      background: rgba(255,255,255,0.82);
+      padding: 22px 20px 18px 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(32,191,169,0.07);
       transition: transform 0.3s;
     }
     section:hover {
       transform: scale(1.01);
     }
     h2 {
-      border-bottom: 2px solid #e5e7eb;
+      border-bottom: 2px solid #b2f0e6;
       padding-bottom: 10px;
       margin-bottom: 20px;
+      font-weight: 600;
+      color: #20bfa9;
+      letter-spacing: 1.2px;
     }
     ul {
       list-style-type: disc;
-      padding-left: 20px;
+      padding-left: 23px;
     }
     a {
-      color: #1d4ed8;
+      color: #0ea68a;
       text-decoration: none;
+      word-break: break-all;
     }
     a:hover {
       text-decoration: underline;
+      color: #183153;
     }
     .project {
-      margin-bottom: 30px;
-    }
-    .project-badge {
-      display: inline-block;
-      padding: 6px 12px;
-      border-radius: 20px;
-      font-weight: bold;
-      color: white;
-      margin-bottom: 6px;
-      margin-right: 6px;
-    }
-    .badge-purple { background: #6d28d9; }
-    .badge-teal { background: #0d9488; }
-    .badge-orange { background: #ea580c; }
-    blockquote {
-      background: #e0f2fe;
-      color: #0c4a6e;
-      font-style: italic;
-      text-align: center;
-      padding: 20px;
-      border-left: 5px solid #0284c7;
-      border-radius: 8px;
-    }
-    .dark {
-      background: #0f172a;
-      color: #f1f5f9;
-    }
-    .dark section {
-      background: #1e293b;
-      box-shadow: 0 2px 8px rgba(255,255,255,0.05);
-    }
-    .toggle-container {
-      position: fixed;
-      top: 20px;
-      right: 20px;
+      margin-bottom: 32px;
       display: flex;
       align-items: center;
-      gap: 10px;
+      flex-wrap: wrap;
+      gap: 8px 18px;
     }
-    .slider {
-      position: relative;
-      display: inline-block;
-      width: 60px;
-      height: 34px;
-    }
-    .slider input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-    .slider .switch {
-      position: absolute;
+    .project-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 7px 15px;
+      border-radius: 24px;
+      font-weight: 600;
+      font-size: 16px;
+      color: #fff;
+      margin-right: 10px;
+      margin-bottom: 4px;
+      background: linear-gradient(90deg, #20bfa9 80%, #7de2d1 100%);
+      box-shadow: 0 2px 8px rgba(32,191,169,0.19);
+      transition: background 0.25s, box-shadow 0.25s;
       cursor: pointer;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: #ccc;
-      transition: .4s;
-      border-radius: 34px;
+      border: none;
+      outline: none;
+      text-decoration: none !important;
     }
-    .slider .switch:before {
-      position: absolute;
-      content: "";
-      height: 26px;
-      width: 26px;
-      left: 4px;
-      bottom: 4px;
-      background-color: white;
-      transition: .4s;
-      border-radius: 50%;
+    .project-badge.purple { background: linear-gradient(90deg, #6d28d9 80%, #a78bfa 100%);}
+    .project-badge.teal { background: linear-gradient(90deg, #0d9488 80%, #5eead4 100%);}
+    .project-badge.orange { background: linear-gradient(90deg, #ea580c 80%, #fdba74 100%);}
+    .project-desc {
+      flex: 1 1 350px;
+      font-size: 17px;
+      color: #2c3e50;
+      margin-top: 2px;
     }
-    input:checked + .switch {
-      background-color: #4ade80;
+    blockquote {
+      background: #e0fff7;
+      color: #1d6f5f;
+      font-style: italic;
+      text-align: center;
+      padding: 18px 18px 18px 22px;
+      border-left: 5px solid #20bfa9;
+      border-radius: 8px;
+      margin: 0 0 10px 0;
     }
-    input:checked + .switch:before {
-      transform: translateX(26px);
-    }
-    /* Tech Stack Section */
     .tech-icons {
       display: flex;
       flex-wrap: wrap;
@@ -168,7 +183,7 @@
     }
     .tech-item:hover {
       transform: translateY(-7px) scale(1.07);
-      box-shadow: 0 6px 18px rgba(30,64,175,0.10);
+      box-shadow: 0 6px 18px rgba(32,191,169,0.14);
     }
     .tech-item:hover img {
       filter: grayscale(0%);
@@ -177,20 +192,83 @@
     .dark .tech-item span {
       color: #f1f5f9;
     }
+    /* Contact Badges */
+    .contact-badges {
+      margin: 16px 0 0 0;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .badge-link {
+      display: inline-flex;
+      align-items: center;
+      padding: 7px 16px 7px 12px;
+      border-radius: 22px;
+      background: linear-gradient(90deg, #20bfa9 80%, #7de2d1 100%);
+      color: #fff;
+      font-weight: 600;
+      font-size: 16px;
+      text-decoration: none;
+      transition: background 0.24s, box-shadow 0.24s;
+      box-shadow: 0 2px 8px rgba(32,191,169,0.14);
+      border: none;
+      outline: none;
+    }
+    .badge-link img {
+      width: 22px;
+      height: 22px;
+      margin-right: 7px;
+      border-radius: 50%;
+      background: #fff;
+      padding: 2px;
+    }
+    .badge-link:hover {
+      background: linear-gradient(90deg, #7de2d1 10%, #20bfa9 100%);
+      color: #183153;
+      box-shadow: 0 4px 16px rgba(32,191,169,0.17);
+    }
+    /* Responsive */
+    @media (max-width: 660px) {
+      header {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px 10px 22px 10px;
+      }
+      .profile-pic {
+        margin: 0 auto 18px auto;
+      }
+      .header-content {
+        min-width: 0;
+      }
+    }
+    @media (max-width: 500px) {
+      .project-badge, .badge-link {
+        font-size: 15px;
+        padding: 7px 11px 7px 9px;
+      }
+      .tech-item {
+        width: 95px;
+      }
+      header h1 {
+        font-size: 31px;
+      }
+      .typing-desc {
+        font-size: 16px;
+      }
+    }
   </style>
 </head>
 <body>
 
-<div class="toggle-container">
-  <label class="slider">
-    <input type="checkbox" id="modeToggle">
-    <span class="switch"></span>
-  </label>
-</div>
-
 <header>
-  <h1>Nishant Malay Mishra</h1>
-  <p>AI & Robotics Enthusiast | Based in Bangalore</p>
+  <img src="images/profile.jpg" alt="Nishant Malay Mishra" class="profile-pic">
+  <div class="header-content">
+    <h1>Nishant Malay Mishra</h1>
+    <div class="typing-desc" id="typewriter">
+      AI & Robotics Enthusiast | Based in Bangalore
+    </div>
+  </div>
 </header>
 
 <div class="container">
@@ -230,34 +308,31 @@
     <h2>Projects</h2>
 
     <div class="project">
-      <a href="https://github.com/NishantMM/Gesture-Robot-Simulator" target="_blank">
-        <span class="project-badge badge-purple">🤖 Gesture Robot</span>
-        Gesture-Controlled Robot Maze Simulator
+      <a class="project-badge purple" href="https://github.com/NishantMM/Gesture-Robot-Simulator" target="_blank">
+        🤖 Gesture Robot
       </a>
-      <p>Python + Pygame + OpenCV project where a robot navigates a dynamically generated maze using hand gestures for directional control and voice/keyboard overrides. Developed using cvzone and custom logic.</p>
+      <span class="project-desc">Gesture-Controlled Robot Maze Simulator — Python + Pygame + OpenCV project where a robot navigates a dynamically generated maze using hand gestures for control and voice/keyboard overrides. Developed using cvzone and custom logic.</span>
     </div>
 
     <div class="project">
-      <a href="https://github.com/NishantMM/cursor-controller" target="_blank">
-        <span class="project-badge badge-teal">🖱️ Cursor Control</span>
-        Cursor Controller with Hand Gestures
+      <a class="project-badge teal" href="https://github.com/NishantMM/cursor-controller" target="_blank">
+        🖱️ Cursor Control
       </a>
-      <p>Uses OpenCV and PyAutoGUI to track hand gestures and control the mouse cursor. Designed for accessibility and touchless computing.</p>
+      <span class="project-desc">Cursor Controller with Hand Gestures — Uses OpenCV and PyAutoGUI to track hand gestures and control the mouse cursor. Designed for accessibility and touchless computing.</span>
     </div>
 
     <div class="project">
-      <a href="https://github.com/NishantMM/ASUP" target="_blank">
-        <span class="project-badge badge-orange">📅 ASUP System</span>
-        ASUP – Automated Substitution Program
+      <a class="project-badge orange" href="https://github.com/NishantMM/ASUP" target="_blank">
+        📅 ASUP System
       </a>
-      <p>A real-time program implemented in my school that dynamically assigns teacher substitutions based on availability and class schedules.</p>
+      <span class="project-desc">ASUP – Automated Substitution Program — A real-time program implemented in my school that dynamically assigns teacher substitutions based on availability and class schedules.</span>
     </div>
   </section>
 
   <section id="skills">
     <h2>Skills</h2>
     <ul>
-      <li>Programming: Python, C++, JavaScript</li>
+      <li>Programming: Python, C++</li>
       <li>Libraries: OpenCV, Pygame, cvzone, PyAutoGUI</li>
       <li>Robotics: Arduino, ESP32, Relay Modules, MicroPython</li>
       <li>AI/ML: Scikit-learn, TensorFlow (learning), NumPy, pandas</li>
@@ -274,10 +349,6 @@
       <div class="tech-item">
         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++" title="C++">
         <span>C++</span>
-      </div>
-      <div class="tech-item">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" title="JavaScript">
-        <span>JavaScript</span>
       </div>
       <div class="tech-item">
         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opencv/opencv-original.svg" alt="OpenCV" title="OpenCV">
@@ -318,8 +389,21 @@
 
   <section id="contact">
     <h2>Contact</h2>
-    <p>Email: <a href="mailto:nishant7937@gmail.com">nishant7937@gmail.com</a></p>
-    <p>GitHub: <a href="https://github.com/NishantMM" target="_blank">github.com/NishantMM</a></p>
+    <div class="contact-badges">
+      <a class="badge-link" href="mailto:nishant7937@gmail.com" target="_blank">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/gmail.svg" alt="Gmail" style="background:#fff;">
+        Email
+      </a>
+      <a class="badge-link" href="https://github.com/NishantMM" target="_blank">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub">
+        GitHub
+      </a>
+      <a class="badge-link" href="https://www.linkedin.com/in/nishantmalaymishra/" target="_blank">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn">
+        LinkedIn
+      </a>
+      <!-- Add more badges as needed -->
+    </div>
   </section>
 
 </div>
@@ -328,12 +412,6 @@
   <p style="text-align: center; padding: 20px; color: gray">© 2025 Nishant Malay Mishra. All rights reserved.</p>
 </footer>
 
-<script>
-  const toggle = document.getElementById('modeToggle');
-  toggle.addEventListener('change', () => {
-    document.body.classList.toggle('dark');
-  });
-</script>
 
 </body>
 </html>
