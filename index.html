@@ -4,17 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nishant's Portfolio</title>
-  <!-- Google Fonts for a fresh look -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Fira+Mono&display=swap" rel="stylesheet">
   <style>
-    /* THEME: Cool Mint & Night */
+    /* THEME: Cool Mint & Night with SCROLL REVEAL */
     body {
       font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
       margin: 0;
       padding: 0;
       background: linear-gradient(135deg, #e0fff7 0%, #b2f0e6 100%);
       color: #183153;
-      transition: background 0.5s, color 0.5s;
       min-height: 100vh;
     }
     header {
@@ -60,7 +58,6 @@
       white-space: nowrap;
       overflow: hidden;
       border-right: .15em solid #20bfa9;
-      /* For animation fallback on unsupported */
       animation: typing 4s steps(38, end) 1, blink-caret 0.7s infinite;
       width: 0;
       animation-fill-mode: forwards;
@@ -84,10 +81,14 @@
       padding: 22px 20px 18px 20px;
       border-radius: 12px;
       box-shadow: 0 2px 12px rgba(32,191,169,0.07);
-      transition: transform 0.3s;
+      transition: transform 0.3s, opacity 0.7s cubic-bezier(.33,.66,.66,1);
+      opacity: 0;
+      transform: translateY(50px);
+      will-change: opacity, transform;
     }
-    section:hover {
-      transform: scale(1.01);
+    section.visible {
+      opacity: 1;
+      transform: none;
     }
     h2 {
       border-bottom: 2px solid #b2f0e6;
@@ -116,6 +117,14 @@
       align-items: center;
       flex-wrap: wrap;
       gap: 8px 18px;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 0.7s cubic-bezier(.33,.66,.66,1), transform 0.7s cubic-bezier(.33,.66,.66,1);
+      will-change: opacity, transform;
+    }
+    .project.visible {
+      opacity: 1;
+      transform: none;
     }
     .project-badge {
       display: inline-flex;
@@ -167,7 +176,14 @@
       flex-direction: column;
       align-items: center;
       width: 110px;
-      transition: transform 0.2s, box-shadow 0.2s;
+      transition: transform 0.2s, box-shadow 0.2s, opacity 0.7s cubic-bezier(.33,.66,.66,1), transform 0.7s cubic-bezier(.33,.66,.66,1);
+      opacity: 0;
+      transform: translateY(50px);
+      will-change: opacity, transform;
+    }
+    .tech-item.visible {
+      opacity: 1;
+      transform: none;
     }
     .tech-item img {
       width: 56px;
@@ -189,16 +205,20 @@
       filter: grayscale(0%);
       transform: scale(1.15);
     }
-    .dark .tech-item span {
-      color: #f1f5f9;
-    }
-    /* Contact Badges */
     .contact-badges {
       margin: 16px 0 0 0;
       display: flex;
       gap: 16px;
       flex-wrap: wrap;
       align-items: center;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 0.7s cubic-bezier(.33,.66,.66,1), transform 0.7s cubic-bezier(.33,.66,.66,1);
+      will-change: opacity, transform;
+    }
+    .contact-badges.visible {
+      opacity: 1;
+      transform: none;
     }
     .badge-link {
       display: inline-flex;
@@ -228,7 +248,6 @@
       color: #183153;
       box-shadow: 0 4px 16px rgba(32,191,169,0.17);
     }
-    /* Responsive */
     @media (max-width: 660px) {
       header {
         flex-direction: column;
@@ -257,6 +276,13 @@
         font-size: 16px;
       }
     }
+    @media (prefers-reduced-motion: reduce) {
+      section, .project, .tech-item, .contact-badges {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -266,7 +292,7 @@
   <div class="header-content">
     <h1>Nishant Malay Mishra</h1>
     <div class="typing-desc" id="typewriter">
-      AI & Robotics Enthusiast | Bangalore
+      AI & Robotics Enthusiast | Based in Bangalore
     </div>
   </div>
 </header>
@@ -351,6 +377,10 @@
         <span>C++</span>
       </div>
       <div class="tech-item">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" title="JavaScript">
+        <span>JavaScript</span>
+      </div>
+      <div class="tech-item">
         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opencv/opencv-original.svg" alt="OpenCV" title="OpenCV">
         <span>OpenCV</span>
       </div>
@@ -402,7 +432,6 @@
         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn">
         LinkedIn
       </a>
-      <!-- Add more badges as needed -->
     </div>
   </section>
 
@@ -412,6 +441,31 @@
   <p style="text-align: center; padding: 20px; color: gray">© 2025 Nishant Malay Mishra. All rights reserved.</p>
 </footer>
 
+<script>
+  // Scroll reveal effect for sections, projects, tech-items, contact-badges
+  const revealEls = [
+    ...document.querySelectorAll("section"),
+    ...document.querySelectorAll(".project"),
+    ...document.querySelectorAll(".tech-item"),
+    ...document.querySelectorAll(".contact-badges")
+  ];
+  function onScroll() {
+    for (const el of revealEls) {
+      if (!el.classList.contains('visible')) {
+        const rect = el.getBoundingClientRect();
+        if(rect.top < window.innerHeight - 60) {
+          el.classList.add('visible');
+        }
+      }
+    }
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  window.addEventListener('DOMContentLoaded', () => {
+    onScroll();
+    setTimeout(onScroll, 100); // ensure for slow loads
+  });
+</script>
 
 </body>
 </html>
