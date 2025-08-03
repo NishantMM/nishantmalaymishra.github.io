@@ -3,12 +3,271 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Blogs | Nishant MM</title>
+  <title>Blogs | Nishant Malay Mishra</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Fira+Mono&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <style>
+    :root {
+      --primary: #253858;
+      --secondary: #42526e;
+      --accent: #0065ff;
+      --light-bg: #f7fafc;
+      --light-card: #fff;
+      --light-head: #eaeffc;
+      --light-border: #e3e8ee;
+      --light-shadow: rgba(37,56,88,0.06);
+
+      --dark-bg: #171c26;
+      --dark-card: #232b3a;
+      --dark-head: #253858;
+      --dark-border: #30384b;
+      --dark-shadow: rgba(0,0,0,0.12);
+
+      --text-main: #253858;
+      --text-secondary: #42526e;
+      --text-invert: #fff;
+      --badge-email: #d93025;
+      --badge-github: #24292e;
+      --badge-linkedin: #0077b5;
+    }
+    body {
+      font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: var(--light-bg);
+      color: var(--text-main);
+      min-height: 100vh;
+      transition: background 0.4s, color 0.4s;
+    }
+    body.dark {
+      background: var(--dark-bg);
+      color: var(--text-invert);
+    }
+    nav {
+      width:100%;
+      background:#eaeffc;
+      padding:14px 0 10px 0;
+      text-align:center;
+      margin:0 0 24px 0;
+      box-shadow:0 2px 8px rgba(37,56,88,0.05);
+    }
+    nav a {
+      color:#253858;
+      font-weight:700;
+      text-decoration:none;
+      margin:0 18px;
+      transition:color 0.2s;
+    }
+    nav a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+    body.dark nav {
+      background: var(--dark-head);
+      box-shadow:0 2px 8px var(--dark-shadow);
+    }
+    body.dark nav a {
+      color: #b2c1e0;
+    }
+    header {
+      background: var(--light-head);
+      color: var(--primary);
+      padding: 44px 20px 30px 20px;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      border-bottom-left-radius: 60px 30px;
+      box-shadow: 0 4px 20px var(--light-shadow);
+      position: relative;
+      transition: background 0.4s, color 0.4s;
+    }
+    body.dark header {
+      background: var(--dark-head);
+      color: var(--text-invert);
+      box-shadow: 0 4px 20px var(--dark-shadow);
+    }
+    .profile-pic {
+      width: 115px;
+      height: 115px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 2px 8px var(--light-shadow);
+      margin-right: 32px;
+      border: 4px solid #fff;
+      background: #e0e4ea;
+      flex-shrink: 0;
+      transition: box-shadow 0.4s;
+    }
+    body.dark .profile-pic {
+      box-shadow: 0 2px 8px var(--dark-shadow);
+      border: 4px solid var(--dark-card);
+      background: var(--dark-card);
+    }
+    .header-content {
+      flex: 1;
+      min-width: 0;
+    }
+    header h1 {
+      margin: 0 0 7px 0;
+      font-size: 44px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      line-height: 1.1;
+      word-break: break-all;
+    }
+    .typing-desc {
+      font-family: 'Fira Mono', monospace;
+      font-size: 21px;
+      color: var(--accent);
+      padding-top: 4px;
+      min-height: 32px;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: .13em solid var(--accent);
+      animation: blink-caret 0.7s infinite;
+      background: transparent;
+      transition: color 0.4s, border-color 0.4s;
+    }
+    body.dark .typing-desc {
+      color: #89b4fa;
+      border-color: #89b4fa;
+    }
+    @keyframes blink-caret {
+      0%, 100% { border-color: inherit; }
+      50% { border-color: transparent; }
+    }
+    .toggle-container {
+      position: fixed;
+      top: 20px;
+      right: 24px;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .toggle-label {
+      font-size: 15px;
+      font-family: inherit;
+      color: var(--secondary);
+      transition: color 0.4s;
+      cursor: pointer;
+      user-select: none;
+    }
+    body.dark .toggle-label { color: #b2c1e0; }
+    .toggle-switch {
+      width: 46px;
+      height: 26px;
+      border-radius: 18px;
+      background: #d7e7fa;
+      position: relative;
+      display: inline-block;
+      vertical-align: middle;
+      transition: background 0.4s;
+      cursor: pointer;
+    }
+    body.dark .toggle-switch { background: #233150; }
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .toggle-slider {
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 20px;
+      height: 20px;
+      background: #fff;
+      border-radius: 50%;
+      transition: left 0.3s, background 0.4s;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    }
+    .toggle-switch input:checked + .toggle-slider {
+      left: 23px;
+      background: var(--accent);
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 35px 18px 10px 18px;
+    }
+    h2 {
+      border-bottom: 2px solid var(--light-border);
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 1.2px;
+      transition: color 0.4s, border-color 0.4s;
+    }
+    body.dark h2 {
+      color: #89b4fa;
+      border-bottom: 2px solid var(--dark-border);
+    }
+    .blog-topic {
+      margin-bottom: 40px;
+      background: var(--light-card);
+      border-radius: 14px;
+      padding: 26px 24px;
+      box-shadow: 0 2px 12px var(--light-shadow);
+      transition: background 0.4s, box-shadow 0.4s;
+    }
+    body.dark .blog-topic {
+      background: var(--dark-card);
+      box-shadow: 0 2px 12px var(--dark-shadow);
+    }
+    .blog-topic h3 {
+      margin: 0 0 10px 0;
+      color: var(--accent);
+      font-size: 1.23em;
+    }
+    .blog-topic p {
+      margin: 0 0 8px 0;
+      font-size: 1.08em;
+    }
+    .blog-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 13px 17px;
+      border-radius: 21px;
+      font-size: 1.15em;
+      font-weight: 600;
+      color: #fff;
+      background: #7356bf;
+      margin-right: 18px;
+      box-shadow: 0 2px 8px var(--light-shadow);
+      text-decoration: none;
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+    .blog-badge.teal { background: #207868; }
+    .blog-badge:hover, .blog-badge:focus {
+      background: #fff;
+      color: var(--accent);
+      box-shadow: 0 4px 16px var(--light-shadow);
+      text-decoration: underline;
+    }
+    /* Tech stack and contact icon fix (if needed for future) */
+    .tech-item img {
+      width: 56px !important;
+      height: 56px !important;
+      max-width: 56px !important;
+      max-height: 56px !important;
+      margin-bottom: 8px;
+      filter: grayscale(30%);
+      transition: filter 0.2s, transform 0.2s;
+    }
+    .badge-link img {
+      width: 22px !important;
+      height: 22px !important;
+      max-width: 22px !important;
+      max-height: 22px !important;
+      margin-right: 7px;
+      border-radius: 50%;
+      background: #fff;
+      padding: 2px;
+    }
+  </style>
 </head>
 <body>
-
 <div class="toggle-container">
   <label class="toggle-label" for="modeToggle">Dark mode</label>
   <span class="toggle-switch">
@@ -16,99 +275,62 @@
     <span class="toggle-slider"></span>
   </span>
 </div>
-
-<nav class="navbar">
-  <ul>
-    <li><a href="index.html">Home</a></li>
-    <li><a href="blogs.html" class="active">Blogs</a></li>
-    <li><a href="projects.html">Projects</a></li>
-  </ul>
+<nav>
+  <a href="index.html">Home</a>
+  <a href="projects.html">Projects</a>
+  <a href="blogs.html">Blogs</a>
 </nav>
-
 <header>
+  <img src="images/profile.jpg" alt="Nishant Malay Mishra" class="profile-pic">
   <img src="images/webpic.jpg" alt="Nishant Malay Mishra" class="profile-pic">
   <div class="header-content">
     <h1>Nishant Malay Mishra</h1>
-    <div class="typing-desc">Exploring ideas & documenting my journey 📝</div>
+    <div class="typing-desc">My Blogs</div>
   </div>
 </header>
-
 <div class="container">
-
-  <section id="blog-intro">
-    <h2>Welcome to My Blog</h2>
+  <h2 style="margin-top:20px;">Blogs</h2>
+  <p style="margin-bottom:28px">
+    Welcome to my blog space! Here I share my adventures, thoughts, and life lessons, from the curious days of childhood to the exciting journey of being a teen. Pick a topic below to dive into stories and experiences that shaped me!
+  </p>
+  <div id="life-kid" class="blog-topic">
+    <a class="blog-badge" style="font-size:1.2em;" href="#life-kid">🧒 Life-Kid</a>
+    <h3>Life-Kid</h3>
     <p>
-      Here I share my journey through technology, robotics, and coding adventures. Every post is a reflection of my passion for building, learning, and exploring new ideas.
+      Stories and reflections from my childhood: how curiosity, fun, and mistakes shaped my early years. From first scientific experiments to funny mishaps, find out what I'd tell my younger self!
+      <br>
+      <a href="#life-kid" style="font-size:0.97em;">Read more (coming soon)</a>
     </p>
-  </section>
-
-  <section id="blog1">
-    <h2>🤖 Gesture-Controlled Robot: Building Smart Navigation</h2>
+  </div>
+  <div id="life-teen" class="blog-topic">
+    <a class="blog-badge teal" style="font-size:1.2em;" href="#life-teen">🧑 Life-Teen</a>
+    <h3>Life-Teen</h3>
     <p>
-      Dive into the details of developing a gesture-controlled robot that can navigate dynamic mazes. I describe the process of setting up computer vision pipelines using OpenCV and MediaPipe, training the gesture classifier, and integrating hardware control with real-time feedback. The blog covers challenges like latency, false positives, and the thrill of seeing the robot respond instantly to my hand movements. Bonus: how I added voice and keyboard overrides for extra flexibility!
+      Journey through my teenage years! I write about high school, personal growth, overcoming challenges, and what I've learned about academics, friendships, and self-discovery.
+      <br>
+      <a href="#life-teen" style="font-size:0.97em;">Read more (coming soon)</a>
     </p>
-  </section>
-
-  <section id="blog2">
-    <h2>🔐 Offline Password Vault: Portable, Secure, and MFA Enabled</h2>
-    <p>
-      This deep-dive post explains how I architected a robust offline password manager that never touches the cloud but works seamlessly on Windows, Android, and iOS. I cover AES encryption, integrating biometric authentication (fingerprint & face), and designing a slick user flow for maximum security and convenience. I also share lessons learned about cross-platform cryptography.
-    </p>
-  </section>
-
-  <section id="blog3">
-    <h2>📅 ASUP: How I Automated Teacher Substitution</h2>
-    <p>
-      Teacher absences can create chaos—so I built ASUP, a Python-powered automation tool that reads timetables and instantly assigns the best available substitute teachers. In this post, I break down the logic engine, real-world deployment experience, and the impact it made in a working school.
-    </p>
-  </section>
-
-  <section id="blog-feedback">
-    <h2>💬 Feedback</h2>
-    <p>If you read any blog and have thoughts or suggestions, feel free to reach out at <a href="mailto:nishant7937@gmail.com">nishant7937@gmail.com</a>. I'm always happy to learn from readers and collaborators.</p>
-  </section>
-
+  </div>
 </div>
-
 <footer>
   <p style="text-align: center; padding: 20px; color: gray">© 2025 Nishant Malay Mishra. All rights reserved.</p>
 </footer>
-
 <script>
-  const revealEls = [
-    ...document.querySelectorAll("section")
-  ];
-  function onScroll() {
-    for (const el of revealEls) {
-      if (!el.classList.contains('visible')) {
-        const rect = el.getBoundingClientRect();
-        if(rect.top < window.innerHeight - 60) {
-          el.classList.add('visible');
-        }
-      }
-    }
-  }
-  window.addEventListener('scroll', onScroll, {passive:true});
-  window.addEventListener('resize', onScroll);
-  window.addEventListener('DOMContentLoaded', () => {
-    onScroll();
-    setTimeout(onScroll, 100);
-  });
-
+  // Dark mode toggle from localStorage
+  const prefersDark = window.localStorage.getItem('theme') === 'dark';
+  if(prefersDark) document.body.classList.add('dark');
   const toggle = document.getElementById('modeToggle');
-  if(window.localStorage.getItem('theme') === 'dark') {
-    document.body.classList.add('dark');
-    toggle.checked = true;
+  if(toggle){
+    toggle.checked = prefersDark;
+    toggle.addEventListener('change', () => {
+      document.body.classList.toggle('dark');
+      if(document.body.classList.contains('dark')) {
+        window.localStorage.setItem('theme', 'dark');
+      } else {
+        window.localStorage.setItem('theme', 'light');
+      }
+    });
   }
-  toggle.addEventListener('change', () => {
-    document.body.classList.toggle('dark');
-    if(document.body.classList.contains('dark')) {
-      window.localStorage.setItem('theme', 'dark');
-    } else {
-      window.localStorage.setItem('theme', 'light');
-    }
-  });
 </script>
-
 </body>
 </html>
