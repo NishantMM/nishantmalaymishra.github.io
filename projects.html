@@ -3,12 +3,316 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Projects | Nishant MM</title>
+  <title>Projects | Nishant Malay Mishra</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Fira+Mono&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <style>
+    :root {
+      --primary: #253858;
+      --secondary: #42526e;
+      --accent: #0065ff;
+      --light-bg: #f7fafc;
+      --light-card: #fff;
+      --light-head: #eaeffc;
+      --light-border: #e3e8ee;
+      --light-shadow: rgba(37,56,88,0.06);
+
+      --dark-bg: #171c26;
+      --dark-card: #232b3a;
+      --dark-head: #253858;
+      --dark-border: #30384b;
+      --dark-shadow: rgba(0,0,0,0.12);
+
+      --text-main: #253858;
+      --text-secondary: #42526e;
+      --text-invert: #fff;
+      --badge-email: #d93025;
+      --badge-github: #24292e;
+      --badge-linkedin: #0077b5;
+    }
+    body {
+      font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: var(--light-bg);
+      color: var(--text-main);
+      min-height: 100vh;
+      transition: background 0.4s, color 0.4s;
+    }
+    body.dark {
+      background: var(--dark-bg);
+      color: var(--text-invert);
+    }
+    nav {
+      width:100%;
+      background:#eaeffc;
+      padding:14px 0 10px 0;
+      text-align:center;
+      margin:0 0 24px 0;
+      box-shadow:0 2px 8px rgba(37,56,88,0.05);
+    }
+    nav a {
+      color:#253858;
+      font-weight:700;
+      text-decoration:none;
+      margin:0 18px;
+      transition:color 0.2s;
+    }
+    nav a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+    body.dark nav {
+      background: var(--dark-head);
+      box-shadow:0 2px 8px var(--dark-shadow);
+    }
+    body.dark nav a {
+      color: #b2c1e0;
+    }
+    header {
+      background: var(--light-head);
+      color: var(--primary);
+      padding: 44px 20px 30px 20px;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      border-bottom-left-radius: 60px 30px;
+      box-shadow: 0 4px 20px var(--light-shadow);
+      position: relative;
+      transition: background 0.4s, color 0.4s;
+    }
+    body.dark header {
+      background: var(--dark-head);
+      color: var(--text-invert);
+      box-shadow: 0 4px 20px var(--dark-shadow);
+    }
+    .profile-pic {
+      width: 115px;
+      height: 115px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 2px 8px var(--light-shadow);
+      margin-right: 32px;
+      border: 4px solid #fff;
+      background: #e0e4ea;
+      flex-shrink: 0;
+      transition: box-shadow 0.4s;
+    }
+    body.dark .profile-pic {
+      box-shadow: 0 2px 8px var(--dark-shadow);
+      border: 4px solid var(--dark-card);
+      background: var(--dark-card);
+    }
+    .header-content {
+      flex: 1;
+      min-width: 0;
+    }
+    header h1 {
+      margin: 0 0 7px 0;
+      font-size: 44px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      line-height: 1.1;
+      word-break: break-all;
+    }
+    .typing-desc {
+      font-family: 'Fira Mono', monospace;
+      font-size: 21px;
+      color: var(--accent);
+      padding-top: 4px;
+      min-height: 32px;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: .13em solid var(--accent);
+      animation: blink-caret 0.7s infinite;
+      background: transparent;
+      transition: color 0.4s, border-color 0.4s;
+    }
+    body.dark .typing-desc {
+      color: #89b4fa;
+      border-color: #89b4fa;
+    }
+    @keyframes blink-caret {
+      0%, 100% { border-color: inherit; }
+      50% { border-color: transparent; }
+    }
+    .toggle-container {
+      position: fixed;
+      top: 20px;
+      right: 24px;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .toggle-label {
+      font-size: 15px;
+      font-family: inherit;
+      color: var(--secondary);
+      transition: color 0.4s;
+      cursor: pointer;
+      user-select: none;
+    }
+    body.dark .toggle-label { color: #b2c1e0; }
+    .toggle-switch {
+      width: 46px;
+      height: 26px;
+      border-radius: 18px;
+      background: #d7e7fa;
+      position: relative;
+      display: inline-block;
+      vertical-align: middle;
+      transition: background 0.4s;
+      cursor: pointer;
+    }
+    body.dark .toggle-switch { background: #233150; }
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .toggle-slider {
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 20px;
+      height: 20px;
+      background: #fff;
+      border-radius: 50%;
+      transition: left 0.3s, background 0.4s;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    }
+    .toggle-switch input:checked + .toggle-slider {
+      left: 23px;
+      background: var(--accent);
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 35px 18px 10px 18px;
+    }
+    h2 {
+      border-bottom: 2px solid var(--light-border);
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 1.2px;
+      transition: color 0.4s, border-color 0.4s;
+    }
+    body.dark h2 {
+      color: #89b4fa;
+      border-bottom: 2px solid var(--dark-border);
+    }
+    .project-card {
+      display: flex;
+      flex-wrap: wrap;
+      background: var(--light-card);
+      border-radius: 14px;
+      margin-bottom: 38px;
+      box-shadow: 0 2px 12px var(--light-shadow);
+      overflow: hidden;
+      align-items: stretch;
+      transition: background 0.4s, box-shadow 0.4s;
+    }
+    body.dark .project-card {
+      background: var(--dark-card);
+      box-shadow: 0 2px 12px var(--dark-shadow);
+    }
+    .project-img {
+      min-width: 220px;
+      width: 300px;
+      object-fit: cover;
+      height: 100%;
+      background: #e5eaf3;
+      border-right: 2px solid var(--light-border);
+      display: block;
+    }
+    body.dark .project-img {
+      background: #222538;
+      border-right: 2px solid var(--dark-border);
+    }
+    .project-content {
+      flex: 1 1 300px;
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .project-content h3 {
+      margin: 0 0 10px 0;
+      color: var(--accent);
+      font-size: 1.23em;
+    }
+    .project-content p {
+      margin: 0 0 8px 0;
+      font-size: 1.08em;
+    }
+    .project-badge-link {
+      display: inline-flex;
+      align-items: center;
+      padding: 7px 15px;
+      border-radius: 24px;
+      font-weight: 600;
+      font-size: 16px;
+      color: #fff;
+      margin-top: 10px;
+      margin-bottom: 4px;
+      background: var(--accent);
+      box-shadow: 0 2px 8px var(--light-shadow);
+      transition: background 0.25s, box-shadow 0.25s;
+      cursor: pointer;
+      border: none;
+      outline: none;
+      text-decoration: none !important;
+    }
+    .project-badge-link.purple { background: #7356bf;}
+    .project-badge-link.teal { background: #207868;}
+    .project-badge-link.orange { background: #bf692f;}
+    .project-badge-link.blue { background: #0065ff; }
+    .project-badge-link.green { background: #2cb67d; }
+    .project-badge-link.pink { background: #e64980; }
+    .project-badge-link:hover, .project-badge-link:focus {
+      background: #fff;
+      color: var(--accent);
+      box-shadow: 0 4px 16px var(--light-shadow);
+    }
+    @media (max-width: 800px) {
+      .project-card {
+        flex-direction: column;
+      }
+      .project-img {
+        width: 100%;
+        max-height: 240px;
+        border-right: none;
+        border-bottom: 2px solid var(--light-border);
+      }
+      body.dark .project-img {
+        border-bottom: 2px solid var(--dark-border);
+      }
+    }
+    /* Tech stack and contact icon fix */
+    .tech-item img {
+      width: 56px !important;
+      height: 56px !important;
+      max-width: 56px !important;
+      max-height: 56px !important;
+      margin-bottom: 8px;
+      filter: grayscale(30%);
+      transition: filter 0.2s, transform 0.2s;
+    }
+    .badge-link img {
+      width: 22px !important;
+      height: 22px !important;
+      max-width: 22px !important;
+      max-height: 22px !important;
+      margin-right: 7px;
+      border-radius: 50%;
+      background: #fff;
+      padding: 2px;
+    }
+  </style>
 </head>
 <body>
-
 <div class="toggle-container">
   <label class="toggle-label" for="modeToggle">Dark mode</label>
   <span class="toggle-switch">
@@ -16,67 +320,113 @@
     <span class="toggle-slider"></span>
   </span>
 </div>
-
-<nav class="navbar">
-  <ul>
-    <li><a href="index.html">Home</a></li>
-    <li><a href="blogs.html">Blogs</a></li>
-    <li><a href="projects.html" class="active">Projects</a></li>
-  </ul>
+<nav>
+  <a href="index.html">Home</a>
+  <a href="projects.html">Projects</a>
+  <a href="blogs.html">Blogs</a>
 </nav>
-
 <header>
+  <img src="images/profile.jpg" alt="Nishant Malay Mishra" class="profile-pic">
   <img src="images/webpic.jpg" alt="Nishant Malay Mishra" class="profile-pic">
   <div class="header-content">
     <h1>Nishant Malay Mishra</h1>
-    <div class="typing-desc">All My Projects (Details Below)</div>
+    <div class="typing-desc">All My Projects</div>
   </div>
 </header>
-
 <div class="container">
-  <section id="projects-list">
-    <h2>My Projects</h2>
-    <article>
-      <h3>🤖 Gesture-Controlled Robot: Building Smart Navigation</h3>
-      <p>
-        I developed a robot capable of navigating complex mazes using hand gestures, leveraging computer vision and machine learning. The project utilized OpenCV and MediaPipe for real-time gesture recognition and Pygame for control. Key features include robust gesture classification, real-time response, and seamless integration of keyboard and voice overrides. This project challenged me to merge hardware and software, and taught me about edge-case handling in dynamic environments.
-      </p>
-    </article>
-    <article>
-      <h3>🔐 Offline Password Vault: Portable, Secure, and MFA Enabled</h3>
-      <p>
-        Security and privacy are core to this project—a fully offline password manager supporting Windows, Android, and iOS. Using AES encryption, it ensures data never leaves the device. The three-level multi-factor authentication flow: fingerprint (on mobile), face recognition, then passcode, adds unmatched security. Building this required cross-platform thinking, biometric integration, and secure data storage strategies.
-      </p>
-    </article>
-    <article>
-      <h3>📅 ASUP: Automated Teacher Substitution Program</h3>
-      <p>
-        ASUP solves the real-world headache of finding substitute teachers on short notice. It reads timetable data and uses smart logic to auto-assign available teachers, balancing fairness and subject expertise. Successfully used in a school, the project improved efficiency and reduced errors. This was my introduction to operational deployment and user feedback cycles.
-      </p>
-    </article>
-    <!-- Add more projects here as needed -->
-  </section>
-</div>
+  <h2 style="margin-top:20px;">Projects</h2>
 
+  <div class="project-card" id="automated-substitution-program">
+    <img class="project-img" src="images/asup.jpg" alt="Automated Substitution Program">
+    <div class="project-content">
+      <h3>📅 Automated Substitution Program</h3>
+      <p>
+        A real-time system for schools to automatically assign teacher substitutions based on availability and schedule. Designed to eliminate manual effort and errors.
+        <br><b>Tech:</b> Python, Scheduling Algorithms, Automation
+      </p>
+      <a class="project-badge-link orange" href="https://github.com/NishantMM/Automated-Substitution-Program" target="_blank">View on GitHub</a>
+    </div>
+  </div>
+
+  <div class="project-card" id="gesture-robot-simulator">
+    <img class="project-img" src="images/gesture_robot.jpg" alt="Gesture Robot Simulator">
+    <div class="project-content">
+      <h3>🤖 Gesture Robot Simulator</h3>
+      <p>
+        A Python, Pygame, and OpenCV-powered robot that navigates dynamically generated mazes using real-time hand gestures. Includes cvzone-based gesture control and keyboard/voice overrides.
+        <br><b>Tech:</b> Python, OpenCV, Pygame, cvzone
+      </p>
+      <a class="project-badge-link purple" href="https://github.com/NishantMM/Gesture-Robot-Simulator" target="_blank">View on GitHub</a>
+    </div>
+  </div>
+
+  <div class="project-card" id="line-follower-simulation">
+    <img class="project-img" src="images/line_follower.jpg" alt="Line Follower Simulation">
+    <div class="project-content">
+      <h3>🛤️ Line Follower Simulation</h3>
+      <p>
+        A simulation of a line-following robot using computer vision to detect and follow paths. Useful for algorithm prototyping and robotics education.
+        <br><b>Tech:</b> Python, OpenCV, Robotics Simulation
+      </p>
+      <a class="project-badge-link teal" href="https://github.com/NishantMM/Line-Follower-simulation" target="_blank">View on GitHub</a>
+    </div>
+  </div>
+
+  <div class="project-card" id="optical-character-recognititon">
+    <img class="project-img" src="images/ocr.jpg" alt="Optical Character Recognition">
+    <div class="project-content">
+      <h3>🔤 Optical Character Recognition</h3>
+      <p>
+        A basic OCR engine that extracts text from images using Python and OpenCV. Demonstrates the core concepts behind text recognition and preprocessing.
+        <br><b>Tech:</b> Python, OpenCV, Tesseract (optionally)
+      </p>
+      <a class="project-badge-link blue" href="https://github.com/NishantMM/optical-character-recognititon" target="_blank">View on GitHub</a>
+    </div>
+  </div>
+
+  <div class="project-card" id="bluetooth-light-control">
+    <img class="project-img" src="images/bluetooth_light.jpg" alt="Bluetooth Light Control">
+    <div class="project-content">
+      <h3>💡 Bluetooth Light Control</h3>
+      <p>
+        Control lights remotely via Bluetooth using a custom Python application and microcontroller. Useful for IoT and home automation demos.
+        <br><b>Tech:</b> Python, Arduino/ESP32, Bluetooth
+      </p>
+      <a class="project-badge-link green" href="https://github.com/NishantMM/bluetooth-light-control" target="_blank">View on GitHub</a>
+    </div>
+  </div>
+
+  <div class="project-card" id="gesture-emotion-recognition">
+    <img class="project-img" src="images/gesture_emotion.jpg" alt="Gesture Emotion Recognition">
+    <div class="project-content">
+      <h3>😊 Gesture Emotion Recognition</h3>
+      <p>
+        Recognizes human emotions from hand gestures using computer vision and machine learning. Explores the intersection of gesture recognition and affective computing.
+        <br><b>Tech:</b> Python, OpenCV, ML
+      </p>
+      <a class="project-badge-link pink" href="https://github.com/NishantMM/Gesture-Emotion-Recognition" target="_blank">View on GitHub</a>
+    </div>
+  </div>
+</div>
 <footer>
   <p style="text-align: center; padding: 20px; color: gray">© 2025 Nishant Malay Mishra. All rights reserved.</p>
 </footer>
-
 <script>
+  // Dark mode toggle from localStorage
+  const prefersDark = window.localStorage.getItem('theme') === 'dark';
+  if(prefersDark) document.body.classList.add('dark');
   const toggle = document.getElementById('modeToggle');
-  if(window.localStorage.getItem('theme') === 'dark') {
-    document.body.classList.add('dark');
-    toggle.checked = true;
+  if(toggle){
+    toggle.checked = prefersDark;
+    toggle.addEventListener('change', () => {
+      document.body.classList.toggle('dark');
+      if(document.body.classList.contains('dark')) {
+        window.localStorage.setItem('theme', 'dark');
+      } else {
+        window.localStorage.setItem('theme', 'light');
+      }
+    });
   }
-  toggle.addEventListener('change', () => {
-    document.body.classList.toggle('dark');
-    if(document.body.classList.contains('dark')) {
-      window.localStorage.setItem('theme', 'dark');
-    } else {
-      window.localStorage.setItem('theme', 'light');
-    }
-  });
 </script>
-
 </body>
 </html>
