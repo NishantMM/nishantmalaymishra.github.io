@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blogs | Nishant MM</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Fira+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="toggle-container">
+  <label class="toggle-label" for="modeToggle">Dark mode</label>
+  <span class="toggle-switch">
+    <input type="checkbox" id="modeToggle" aria-label="Toggle dark mode">
+    <span class="toggle-slider"></span>
+  </span>
+</div>
+
+<nav class="navbar">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="blogs.html" class="active">Blogs</a></li>
+    <li><a href="projects.html">Projects</a></li>
+  </ul>
+</nav>
+
+<header>
+  <img src="images/webpic.jpg" alt="Nishant Malay Mishra" class="profile-pic">
+  <div class="header-content">
+    <h1>Nishant Malay Mishra</h1>
+    <div class="typing-desc">Exploring ideas & documenting my journey 📝</div>
+  </div>
+</header>
+
+<div class="container">
+
+  <section id="blog-intro">
+    <h2>Welcome to My Blog</h2>
+    <p>
+      Here I share my journey through technology, robotics, and coding adventures. Every post is a reflection of my passion for building, learning, and exploring new ideas.
+    </p>
+  </section>
+
+  <section id="blog1">
+    <h2>🤖 Gesture-Controlled Robot: Building Smart Navigation</h2>
+    <p>
+      Dive into the details of developing a gesture-controlled robot that can navigate dynamic mazes. I describe the process of setting up computer vision pipelines using OpenCV and MediaPipe, training the gesture classifier, and integrating hardware control with real-time feedback. The blog covers challenges like latency, false positives, and the thrill of seeing the robot respond instantly to my hand movements. Bonus: how I added voice and keyboard overrides for extra flexibility!
+    </p>
+  </section>
+
+  <section id="blog2">
+    <h2>🔐 Offline Password Vault: Portable, Secure, and MFA Enabled</h2>
+    <p>
+      This deep-dive post explains how I architected a robust offline password manager that never touches the cloud but works seamlessly on Windows, Android, and iOS. I cover AES encryption, integrating biometric authentication (fingerprint & face), and designing a slick user flow for maximum security and convenience. I also share lessons learned about cross-platform cryptography.
+    </p>
+  </section>
+
+  <section id="blog3">
+    <h2>📅 ASUP: How I Automated Teacher Substitution</h2>
+    <p>
+      Teacher absences can create chaos—so I built ASUP, a Python-powered automation tool that reads timetables and instantly assigns the best available substitute teachers. In this post, I break down the logic engine, real-world deployment experience, and the impact it made in a working school.
+    </p>
+  </section>
+
+  <section id="blog-feedback">
+    <h2>💬 Feedback</h2>
+    <p>If you read any blog and have thoughts or suggestions, feel free to reach out at <a href="mailto:nishant7937@gmail.com">nishant7937@gmail.com</a>. I'm always happy to learn from readers and collaborators.</p>
+  </section>
+
+</div>
+
+<footer>
+  <p style="text-align: center; padding: 20px; color: gray">© 2025 Nishant Malay Mishra. All rights reserved.</p>
+</footer>
+
+<script>
+  const revealEls = [
+    ...document.querySelectorAll("section")
+  ];
+  function onScroll() {
+    for (const el of revealEls) {
+      if (!el.classList.contains('visible')) {
+        const rect = el.getBoundingClientRect();
+        if(rect.top < window.innerHeight - 60) {
+          el.classList.add('visible');
+        }
+      }
+    }
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  window.addEventListener('DOMContentLoaded', () => {
+    onScroll();
+    setTimeout(onScroll, 100);
+  });
+
+  const toggle = document.getElementById('modeToggle');
+  if(window.localStorage.getItem('theme') === 'dark') {
+    document.body.classList.add('dark');
+    toggle.checked = true;
+  }
+  toggle.addEventListener('change', () => {
+    document.body.classList.toggle('dark');
+    if(document.body.classList.contains('dark')) {
+      window.localStorage.setItem('theme', 'dark');
+    } else {
+      window.localStorage.setItem('theme', 'light');
+    }
+  });
+</script>
+
+</body>
+</html>
