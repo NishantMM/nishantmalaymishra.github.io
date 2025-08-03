@@ -3,419 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nishant's Portfolio</title>
+  <title>Home | Nishant MM</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Fira+Mono&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --primary: #253858;
-      --secondary: #42526e;
-      --accent: #0065ff;
-      --light-bg: #f7fafc;
-      --light-card: #fff;
-      --light-head: #eaeffc;
-      --light-border: #e3e8ee;
-      --light-shadow: rgba(37,56,88,0.06);
-
-      --dark-bg: #171c26;
-      --dark-card: #232b3a;
-      --dark-head: #253858;
-      --dark-border: #30384b;
-      --dark-shadow: rgba(0,0,0,0.12);
-
-      --text-main: #253858;
-      --text-secondary: #42526e;
-      --text-invert: #fff;
-      --badge-email: #d93025;
-      --badge-github: #24292e;
-      --badge-linkedin: #0077b5;
-    }
-    body {
-      font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: var(--light-bg);
-      color: var(--text-main);
-      min-height: 100vh;
-      transition: background 0.4s, color 0.4s;
-    }
-    body.dark {
-      background: var(--dark-bg);
-      color: var(--text-invert);
-    }
-    header {
-      background: var(--light-head);
-      color: var(--primary);
-      padding: 44px 20px 30px 20px;
-      text-align: left;
-      display: flex;
-      align-items: center;
-      border-bottom-left-radius: 60px 30px;
-      box-shadow: 0 4px 20px var(--light-shadow);
-      position: relative;
-      transition: background 0.4s, color 0.4s;
-    }
-    body.dark header {
-      background: var(--dark-head);
-      color: var(--text-invert);
-      box-shadow: 0 4px 20px var(--dark-shadow);
-    }
-    .profile-pic {
-      width: 115px;
-      height: 115px;
-      border-radius: 50%;
-      object-fit: cover;
-      box-shadow: 0 2px 8px var(--light-shadow);
-      margin-right: 32px;
-      border: 4px solid #fff;
-      background: #e0e4ea;
-      flex-shrink: 0;
-      transition: box-shadow 0.4s;
-    }
-    body.dark .profile-pic {
-      box-shadow: 0 2px 8px var(--dark-shadow);
-      border: 4px solid var(--dark-card);
-      background: var(--dark-card);
-    }
-    .header-content {
-      flex: 1;
-      min-width: 0;
-    }
-    header h1 {
-      margin: 0 0 7px 0;
-      font-size: 44px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      line-height: 1.1;
-      word-break: break-all;
-    }
-    .typing-desc {
-      font-family: 'Fira Mono', monospace;
-      font-size: 21px;
-      color: var(--accent);
-      padding-top: 4px;
-      min-height: 32px;
-      white-space: nowrap;
-      overflow: hidden;
-      border-right: .13em solid var(--accent);
-      animation: blink-caret 0.7s infinite;
-      background: transparent;
-      transition: color 0.4s, border-color 0.4s;
-    }
-    body.dark .typing-desc {
-      color: #89b4fa;
-      border-color: #89b4fa;
-    }
-    @keyframes blink-caret {
-      0%, 100% { border-color: inherit; }
-      50% { border-color: transparent; }
-    }
-    .container {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 35px 18px 10px 18px;
-    }
-    section {
-      margin-bottom: 50px;
-      background: var(--light-card);
-      padding: 22px 20px 18px 20px;
-      border-radius: 12px;
-      box-shadow: 0 2px 12px var(--light-shadow);
-      transition: transform 0.3s, background 0.4s, color 0.4s, box-shadow 0.4s;
-      opacity: 0;
-      transform: translateY(50px);
-      will-change: opacity, transform;
-    }
-    section.visible {
-      opacity: 1;
-      transform: none;
-    }
-    body.dark section {
-      background: var(--dark-card);
-      color: var(--text-invert);
-      box-shadow: 0 2px 12px var(--dark-shadow);
-    }
-    h2 {
-      border-bottom: 2px solid var(--light-border);
-      padding-bottom: 10px;
-      margin-bottom: 20px;
-      font-weight: 600;
-      color: var(--accent);
-      letter-spacing: 1.2px;
-      transition: color 0.4s, border-color 0.4s;
-    }
-    body.dark h2 {
-      color: #89b4fa;
-      border-bottom: 2px solid var(--dark-border);
-    }
-    ul {
-      list-style-type: disc;
-      padding-left: 23px;
-    }
-    a {
-      color: var(--accent);
-      text-decoration: none;
-      word-break: break-all;
-      transition: color 0.3s;
-    }
-    a:hover {
-      text-decoration: underline;
-      color: var(--secondary);
-    }
-    .project {
-      margin-bottom: 32px;
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 8px 18px;
-      opacity: 0;
-      transform: translateY(50px);
-      transition: opacity 0.7s cubic-bezier(.33,.66,.66,1), transform 0.7s cubic-bezier(.33,.66,.66,1);
-      will-change: opacity, transform;
-    }
-    .project.visible {
-      opacity: 1;
-      transform: none;
-    }
-    .project-badge {
-      display: inline-flex;
-      align-items: center;
-      padding: 7px 15px;
-      border-radius: 24px;
-      font-weight: 600;
-      font-size: 16px;
-      color: #fff;
-      margin-right: 10px;
-      margin-bottom: 4px;
-      background: var(--accent);
-      box-shadow: 0 2px 8px var(--light-shadow);
-      transition: background 0.25s, box-shadow 0.25s;
-      cursor: pointer;
-      border: none;
-      outline: none;
-      text-decoration: none !important;
-    }
-    .project-badge.purple { background: #7356bf;}
-    .project-badge.teal { background: #207868;}
-    .project-badge.orange { background: #bf692f;}
-    .project-desc {
-      flex: 1 1 350px;
-      font-size: 17px;
-      color: var(--text-secondary);
-      margin-top: 2px;
-      transition: color 0.4s;
-    }
-    body.dark .project-desc {
-      color: #b2c1e0;
-    }
-    blockquote {
-      background: #e5ecf8;
-      color: #24467c;
-      font-style: italic;
-      text-align: center;
-      padding: 18px 18px 18px 22px;
-      border-left: 5px solid var(--accent);
-      border-radius: 8px;
-      margin: 0 0 10px 0;
-      transition: background 0.4s, color 0.4s, border-color 0.4s;
-    }
-    body.dark blockquote {
-      background: #202739;
-      color: #dbeafe;
-      border-left: 5px solid #89b4fa;
-    }
-    .tech-icons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 32px;
-      justify-content: center;
-      align-items: center;
-      margin-top: 18px;
-    }
-    .tech-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 110px;
-      transition: transform 0.2s, box-shadow 0.2s, opacity 0.7s cubic-bezier(.33,.66,.66,1), transform 0.7s cubic-bezier(.33,.66,.66,1);
-      opacity: 0;
-      transform: translateY(50px);
-      will-change: opacity, transform;
-    }
-    .tech-item.visible {
-      opacity: 1;
-      transform: none;
-    }
-    .tech-item img {
-      width: 56px;
-      height: 56px;
-      margin-bottom: 8px;
-      filter: grayscale(30%);
-      transition: filter 0.2s, transform 0.2s;
-    }
-    .tech-item span {
-      font-size: 1em;
-      color: var(--secondary);
-      margin-top: 3px;
-      transition: color 0.4s;
-    }
-    body.dark .tech-item span {
-      color: #e6eaff;
-    }
-    .tech-item:hover {
-      transform: translateY(-7px) scale(1.07);
-      box-shadow: 0 6px 18px var(--light-shadow);
-    }
-    .tech-item:hover img {
-      filter: grayscale(0%);
-      transform: scale(1.15);
-    }
-    .contact-badges {
-      margin: 16px 0 0 0;
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      align-items: center;
-      opacity: 0;
-      transform: translateY(50px);
-      transition: opacity 0.7s cubic-bezier(.33,.66,.66,1), transform 0.7s cubic-bezier(.33,.66,.66,1);
-      will-change: opacity, transform;
-    }
-    .contact-badges.visible {
-      opacity: 1;
-      transform: none;
-    }
-    .badge-link {
-      display: inline-flex;
-      align-items: center;
-      padding: 7px 16px 7px 12px;
-      border-radius: 22px;
-      background: var(--accent);
-      color: #fff;
-      font-weight: 600;
-      font-size: 16px;
-      text-decoration: none;
-      transition: background 0.24s, box-shadow 0.24s, color 0.24s;
-      box-shadow: 0 2px 8px var(--light-shadow);
-      border: none;
-      outline: none;
-    }
-    .badge-link.email { background: var(--badge-email);}
-    .badge-link.github { background: var(--badge-github);}
-    .badge-link.linkedin { background: var(--badge-linkedin);}
-    .badge-link img {
-      width: 22px;
-      height: 22px;
-      margin-right: 7px;
-      border-radius: 50%;
-      background: #fff;
-      padding: 2px;
-    }
-    .badge-link:hover, .badge-link:focus {
-      background: #fff;
-      color: var(--accent);
-      box-shadow: 0 4px 16px var(--light-shadow);
-    }
-    .badge-link.email:hover, .badge-link.email:focus { color: var(--badge-email);}
-    .badge-link.github:hover, .badge-link.github:focus { color: var(--badge-github);}
-    .badge-link.linkedin:hover, .badge-link.linkedin:focus { color: var(--badge-linkedin);}
-    .badge-link:hover img, .badge-link:focus img {
-      background: #eaeaea;
-    }
-    .dark .badge-link:hover, .dark .badge-link:focus {
-      color: #fff;
-      background: #333;
-    }
-    /* Toggle Button */
-    .toggle-container {
-      position: fixed;
-      top: 20px;
-      right: 24px;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .toggle-label {
-      font-size: 15px;
-      font-family: inherit;
-      color: var(--secondary);
-      transition: color 0.4s;
-      cursor: pointer;
-      user-select: none;
-    }
-    body.dark .toggle-label { color: #b2c1e0; }
-    .toggle-switch {
-      width: 46px;
-      height: 26px;
-      border-radius: 18px;
-      background: #d7e7fa;
-      position: relative;
-      display: inline-block;
-      vertical-align: middle;
-      transition: background 0.4s;
-      cursor: pointer;
-    }
-    body.dark .toggle-switch { background: #233150; }
-    .toggle-switch input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-    .toggle-slider {
-      position: absolute;
-      top: 3px;
-      left: 3px;
-      width: 20px;
-      height: 20px;
-      background: #fff;
-      border-radius: 50%;
-      transition: left 0.3s, background 0.4s;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
-    }
-    .toggle-switch input:checked + .toggle-slider {
-      left: 23px;
-      background: var(--accent);
-    }
-    @media (max-width: 660px) {
-      header {
-        flex-direction: column;
-        text-align: center;
-        padding: 30px 10px 22px 10px;
-      }
-      .profile-pic {
-        margin: 0 auto 18px auto;
-      }
-      .header-content {
-        min-width: 0;
-      }
-      .toggle-container {
-        right: 10px;
-        top: 10px;
-      }
-    }
-    @media (max-width: 500px) {
-      .project-badge, .badge-link {
-        font-size: 15px;
-        padding: 7px 11px 7px 9px;
-      }
-      .tech-item {
-        width: 95px;
-      }
-      header h1 {
-        font-size: 31px;
-      }
-      .typing-desc {
-        font-size: 16px;
-      }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      section, .project, .tech-item, .contact-badges {
-        opacity: 1 !important;
-        transform: none !important;
-        transition: none !important;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -427,145 +17,61 @@
   </span>
 </div>
 
+<nav class="navbar">
+  <ul>
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="blogs.html">Blogs</a></li>
+    <li><a href="projects.html">Projects</a></li>
+  </ul>
+</nav>
+
 <header>
   <img src="images/webpic.jpg" alt="Nishant Malay Mishra" class="profile-pic">
   <div class="header-content">
     <h1>Nishant Malay Mishra</h1>
-    <div class="typing-desc" id="typewriter"></div>
+    <div class="typing-desc">Welcome to my personal site!</div>
   </div>
 </header>
 
 <div class="container">
-
-  <section id="about">
+  <section>
     <h2>About Me</h2>
-    <p>I’m a passionate AI and robotics enthusiast who enjoys building intelligent systems, automating things with Python, and bringing hardware to life with software. I’ve created real-time automation solutions like ASUP and am currently exploring gesture-based control systems, automation, and embedded projects.</p>
+    <p>
+      Hi! I'm Nishant Malay Mishra. I love exploring tech, robotics, security, and automation. Check out my blogs for deep dives and my projects page for my work!
+    </p>
   </section>
 
-  <section id="quote">
-    <h2>My Motto</h2>
-    <blockquote>"Learning never exhausts the mind, only ignites it further."</blockquote>
-  </section>
-
-  <section id="education">
-    <h2>Education Timeline</h2>
+  <section id="projects-brief">
+    <h2>Projects Brief</h2>
     <ul>
-      <li><strong>2010 - 2016</strong> – Vagdevi Vilas School, Marathahalli</li>
-      <li><strong>2016 - 2024</strong> – Lake Montfort School</li>
-      <li><strong>2022</strong> – Class 10, Lake Montfort School</li>
-      <li><strong>2024</strong> – Class 12, Lake Montfort School</li>
+      <li>
+        <strong>Gesture-Controlled Robot:</strong> A robot that navigates mazes using hand gestures with OpenCV and MediaPipe.
+      </li>
+      <li>
+        <strong>Offline Password Vault:</strong> Portable password manager with AES encryption and multi-factor authentication.
+      </li>
+      <li>
+        <strong>ASUP:</strong> Python system to automate teacher substitution in schools.
+      </li>
     </ul>
+    <a href="projects.html" class="see-all-link">See all projects &rarr;</a>
   </section>
 
-  <section id="achievements">
-    <h2>Achievements</h2>
+  <section id="blogs-brief">
+    <h2>Blogs Brief</h2>
     <ul>
-      <li>🏆 2016 – VMO Winner</li>
-      <li>🥇 BASE Quiz Winner – Team Champion, 2019</li>
-      <li>🎯 Finalist in Talentspire powered by IISc Bangalore – 2022</li>
-      <li>✅ Cleared JEE Mains with a strong rank in 2024 & 2025</li>
-      <li>✅ Cleared JEE Adv in 2025</li>
+      <li>
+        <strong>Gesture-Controlled Robot:</strong> Building smart navigation with gestures and real-time control.
+      </li>
+      <li>
+        <strong>Offline Password Vault:</strong> Creating a secure, cross-platform, offline password manager.
+      </li>
+      <li>
+        <strong>ASUP:</strong> Automating teacher substitution with Python logic.
+      </li>
     </ul>
+    <a href="blogs.html" class="see-all-link">Read all blogs &rarr;</a>
   </section>
-
-  <section id="projects">
-    <h2>Projects</h2>
-    <div class="project">
-      <a class="project-badge purple" href="https://github.com/NishantMM/Gesture-Robot-Simulator" target="_blank">
-        🤖 Gesture Robot
-      </a>
-      <span class="project-desc">Gesture-Controlled Robot Maze Simulator — Python + Pygame + OpenCV project where a robot navigates a dynamically generated maze using hand gestures for control and voice/keyboard overrides. Developed using cvzone and custom logic.</span>
-    </div>
-    <div class="project">
-      <a class="project-badge teal" href="https://github.com/NishantMM/cursor-controller" target="_blank">
-        🖱️ Cursor Control
-      </a>
-      <span class="project-desc">Cursor Controller with Hand Gestures — Uses OpenCV and PyAutoGUI to track hand gestures and control the mouse cursor. Designed for accessibility and touchless computing.</span>
-    </div>
-    <div class="project">
-      <a class="project-badge orange" href="https://github.com/NishantMM/ASUP" target="_blank">
-        📅 ASUP System
-      </a>
-      <span class="project-desc">ASUP – Automated Substitution Program — A real-time program implemented in my school that dynamically assigns teacher substitutions based on availability and class schedules.</span>
-    </div>
-  </section>
-
-  <section id="skills">
-    <h2>Skills</h2>
-    <ul>
-      <li>Programming: Python, C++</li>
-      <li>Libraries: OpenCV, Pygame, cvzone, PyAutoGUI</li>
-      <li>Robotics: Arduino, ESP32, Relay Modules, MicroPython</li>
-      <li>AI/ML: Scikit-learn, TensorFlow (learning), NumPy, pandas</li>
-    </ul>
-  </section>
-
-  <section id="tech-stack">
-    <h2>Tech Stack</h2>
-    <div class="tech-icons">
-      <div class="tech-item">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" title="Python">
-        <span>Python</span>
-      </div>
-      <div class="tech-item">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++" title="C++">
-        <span>C++</span>
-      </div>
-      <div class="tech-item">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opencv/opencv-original.svg" alt="OpenCV" title="OpenCV">
-        <span>OpenCV</span>
-      </div>
-      <div class="tech-item">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/arduino/arduino-original.svg" alt="Arduino" title="Arduino">
-        <span>Arduino</span>
-      </div>
-      <div class="tech-item">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow" title="TensorFlow">
-        <span>TensorFlow</span>
-      </div>
-      <div class="tech-item">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" title="MySQL">
-        <span>MySQL</span>
-      </div>
-      <div class="tech-item">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" title="GitHub">
-        <span>GitHub</span>
-      </div>
-    </div>
-  </section>
-
-  <section id="interests">
-    <h2>Personal Interests</h2>
-    <ul>
-      <li>🏃‍♂️ Long-distance runner</li>
-      <li>🏸 Badminton player</li>
-      <li>⚽ Loves playing football and tennis</li>
-    </ul>
-  </section>
-
-  <section id="github">
-    <h2>My GitHub Activity</h2>
-    <img class="github-badge" src="https://github-readme-stats.vercel.app/api?username=NishantMM&show_icons=true&count_private=true&theme=default" alt="GitHub Stats">
-  </section>
-
-  <section id="contact">
-    <h2>Contact</h2>
-    <div class="contact-badges">
-      <a class="badge-link email" href="mailto:nishant7937@gmail.com" target="_blank">
-        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/gmail.svg" alt="Gmail" style="background:#fff;">
-        Email
-      </a>
-      <a class="badge-link github" href="https://github.com/NishantMM" target="_blank">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub">
-        GitHub
-      </a>
-      <a class="badge-link linkedin" href="https://www.linkedin.com/in/nishantmalaymishra/" target="_blank">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn">
-        LinkedIn
-      </a>
-    </div>
-  </section>
-
 </div>
 
 <footer>
@@ -573,67 +79,7 @@
 </footer>
 
 <script>
-  // Scroll reveal effect for sections, projects, tech-items, contact-badges
-  const revealEls = [
-    ...document.querySelectorAll("section"),
-    ...document.querySelectorAll(".project"),
-    ...document.querySelectorAll(".tech-item"),
-    ...document.querySelectorAll(".contact-badges")
-  ];
-  function onScroll() {
-    for (const el of revealEls) {
-      if (!el.classList.contains('visible')) {
-        const rect = el.getBoundingClientRect();
-        if(rect.top < window.innerHeight - 60) {
-          el.classList.add('visible');
-        }
-      }
-    }
-  }
-  window.addEventListener('scroll', onScroll, {passive:true});
-  window.addEventListener('resize', onScroll);
-  window.addEventListener('DOMContentLoaded', () => {
-    onScroll();
-    setTimeout(onScroll, 100); // ensure for slow loads
-  });
-
-  // Typewriter effect: continuous loop
-  const typeTarget = document.getElementById('typewriter');
-  const sentences = [
-    "AI & Robotics Enthusiast | Based in Bangalore"
-    // Add more phrases here to cycle through if you wish
-  ];
-  let sentenceIndex = 0;
-  let charIndex = 0;
-  let typing = true;
-  function typeWriterLoop() {
-    const current = sentences[sentenceIndex];
-    if (typing) {
-      if (charIndex <= current.length) {
-        typeTarget.textContent = current.slice(0, charIndex);
-        charIndex++;
-        setTimeout(typeWriterLoop, 65);
-      } else {
-        typing = false;
-        setTimeout(typeWriterLoop, 1500); // pause before erasing
-      }
-    } else {
-      if (charIndex >= 0) {
-        typeTarget.textContent = current.slice(0, charIndex);
-        charIndex--;
-        setTimeout(typeWriterLoop, 30);
-      } else {
-        typing = true;
-        sentenceIndex = (sentenceIndex + 1) % sentences.length;
-        setTimeout(typeWriterLoop, 600); // pause before typing next
-      }
-    }
-  }
-  typeWriterLoop();
-
-  // Dark mode toggle
   const toggle = document.getElementById('modeToggle');
-  // Use local storage for persistence
   if(window.localStorage.getItem('theme') === 'dark') {
     document.body.classList.add('dark');
     toggle.checked = true;
