@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects | Nishant MM</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Fira+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="toggle-container">
+  <label class="toggle-label" for="modeToggle">Dark mode</label>
+  <span class="toggle-switch">
+    <input type="checkbox" id="modeToggle" aria-label="Toggle dark mode">
+    <span class="toggle-slider"></span>
+  </span>
+</div>
+
+<nav class="navbar">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="blogs.html">Blogs</a></li>
+    <li><a href="projects.html" class="active">Projects</a></li>
+  </ul>
+</nav>
+
+<header>
+  <img src="images/webpic.jpg" alt="Nishant Malay Mishra" class="profile-pic">
+  <div class="header-content">
+    <h1>Nishant Malay Mishra</h1>
+    <div class="typing-desc">All My Projects (Details Below)</div>
+  </div>
+</header>
+
+<div class="container">
+  <section id="projects-list">
+    <h2>My Projects</h2>
+    <article>
+      <h3>🤖 Gesture-Controlled Robot: Building Smart Navigation</h3>
+      <p>
+        I developed a robot capable of navigating complex mazes using hand gestures, leveraging computer vision and machine learning. The project utilized OpenCV and MediaPipe for real-time gesture recognition and Pygame for control. Key features include robust gesture classification, real-time response, and seamless integration of keyboard and voice overrides. This project challenged me to merge hardware and software, and taught me about edge-case handling in dynamic environments.
+      </p>
+    </article>
+    <article>
+      <h3>🔐 Offline Password Vault: Portable, Secure, and MFA Enabled</h3>
+      <p>
+        Security and privacy are core to this project—a fully offline password manager supporting Windows, Android, and iOS. Using AES encryption, it ensures data never leaves the device. The three-level multi-factor authentication flow: fingerprint (on mobile), face recognition, then passcode, adds unmatched security. Building this required cross-platform thinking, biometric integration, and secure data storage strategies.
+      </p>
+    </article>
+    <article>
+      <h3>📅 ASUP: Automated Teacher Substitution Program</h3>
+      <p>
+        ASUP solves the real-world headache of finding substitute teachers on short notice. It reads timetable data and uses smart logic to auto-assign available teachers, balancing fairness and subject expertise. Successfully used in a school, the project improved efficiency and reduced errors. This was my introduction to operational deployment and user feedback cycles.
+      </p>
+    </article>
+    <!-- Add more projects here as needed -->
+  </section>
+</div>
+
+<footer>
+  <p style="text-align: center; padding: 20px; color: gray">© 2025 Nishant Malay Mishra. All rights reserved.</p>
+</footer>
+
+<script>
+  const toggle = document.getElementById('modeToggle');
+  if(window.localStorage.getItem('theme') === 'dark') {
+    document.body.classList.add('dark');
+    toggle.checked = true;
+  }
+  toggle.addEventListener('change', () => {
+    document.body.classList.toggle('dark');
+    if(document.body.classList.contains('dark')) {
+      window.localStorage.setItem('theme', 'dark');
+    } else {
+      window.localStorage.setItem('theme', 'light');
+    }
+  });
+</script>
+
+</body>
+</html>
