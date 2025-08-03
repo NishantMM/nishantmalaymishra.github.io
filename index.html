@@ -42,6 +42,82 @@
       background: var(--dark-bg);
       color: var(--text-invert);
     }
+    .toggle-container {
+      position: fixed;
+      top: 20px;
+      right: 24px;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .toggle-label {
+      font-size: 15px;
+      font-family: inherit;
+      color: var(--secondary);
+      transition: color 0.4s;
+      cursor: pointer;
+      user-select: none;
+    }
+    body.dark .toggle-label { color: #b2c1e0; }
+    .toggle-switch {
+      width: 46px;
+      height: 26px;
+      border-radius: 18px;
+      background: #d7e7fa;
+      position: relative;
+      display: inline-block;
+      vertical-align: middle;
+      transition: background 0.4s;
+      cursor: pointer;
+    }
+    body.dark .toggle-switch { background: #233150; }
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .toggle-slider {
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 20px;
+      height: 20px;
+      background: #fff;
+      border-radius: 50%;
+      transition: left 0.3s, background 0.4s;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    }
+    .toggle-switch input:checked + .toggle-slider {
+      left: 23px;
+      background: var(--accent);
+    }
+    nav {
+      width:100%;
+      background:#eaeffc;
+      padding:14px 0 10px 0;
+      text-align:center;
+      margin:0 0 24px 0;
+      box-shadow:0 2px 8px rgba(37,56,88,0.05);
+    }
+    nav a {
+      color:#253858;
+      font-weight:700;
+      text-decoration:none;
+      margin:0 18px;
+      transition:color 0.2s;
+    }
+    nav a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+    body.dark nav {
+      background: var(--dark-head);
+      box-shadow:0 2px 8px var(--dark-shadow);
+    }
+    body.dark nav a {
+      color: #b2c1e0;
+    }
     header {
       background: var(--light-head);
       color: var(--primary);
@@ -147,278 +223,155 @@
       color: #89b4fa;
       border-bottom: 2px solid var(--dark-border);
     }
-    ul {
-      list-style-type: disc;
-      padding-left: 23px;
-    }
-    a {
-      color: var(--accent);
-      text-decoration: none;
-      word-break: break-all;
-      transition: color 0.3s;
-    }
-    a:hover {
-      text-decoration: underline;
-      color: var(--secondary);
-    }
-    .project {
-      margin-bottom: 32px;
+    .project-grid {
       display: flex;
-      align-items: center;
       flex-wrap: wrap;
-      gap: 8px 18px;
-      opacity: 0;
-      transform: translateY(50px);
-      transition: opacity 0.7s cubic-bezier(.33,.66,.66,1), transform 0.7s cubic-bezier(.33,.66,.66,1);
-      will-change: opacity, transform;
+      gap: 12px;
+      margin-top: 8px;
     }
-    .project.visible {
-      opacity: 1;
-      transform: none;
-    }
-    .project-badge {
-      display: inline-flex;
+    .project-badge-home {
+      display: flex;
+      flex-direction: column;
       align-items: center;
-      padding: 7px 15px;
-      border-radius: 24px;
-      font-weight: 600;
-      font-size: 16px;
-      color: #fff;
-      margin-right: 10px;
-      margin-bottom: 4px;
+      justify-content: center;
+      min-width: 125px;
+      font-size: 1em;
+      font-weight: 700;
       background: var(--accent);
+      color: #fff;
+      border-radius: 21px;
+      padding: 12px 15px;
+      margin: 0 4px 12px 0;
       box-shadow: 0 2px 8px var(--light-shadow);
-      transition: background 0.25s, box-shadow 0.25s;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
       cursor: pointer;
       border: none;
       outline: none;
       text-decoration: none !important;
-    }
-    .project-badge.purple { background: #7356bf;}
-    .project-badge.teal { background: #207868;}
-    .project-badge.orange { background: #bf692f;}
-    .project-desc {
-      flex: 1 1 350px;
-      font-size: 17px;
-      color: var(--text-secondary);
-      margin-top: 2px;
-      transition: color 0.4s;
-    }
-    body.dark .project-desc {
-      color: #b2c1e0;
-    }
-    blockquote {
-      background: #e5ecf8;
-      color: #24467c;
-      font-style: italic;
+      letter-spacing: 0.7px;
       text-align: center;
-      padding: 18px 18px 18px 22px;
-      border-left: 5px solid var(--accent);
-      border-radius: 8px;
-      margin: 0 0 10px 0;
-      transition: background 0.4s, color 0.4s, border-color 0.4s;
+      line-height: 1.2;
     }
-    body.dark blockquote {
-      background: #202739;
-      color: #dbeafe;
-      border-left: 5px solid #89b4fa;
+    .project-badge-home.purple { background: #7356bf; }
+    .project-badge-home.teal { background: #207868; }
+    .project-badge-home.orange { background: #bf692f; }
+    .project-badge-home.blue { background: #0065ff; }
+    .project-badge-home.green { background: #2cb67d; }
+    .project-badge-home.pink { background: #e64980; }
+    .project-badge-home span {
+      font-size: 0.98em;
+      margin-top: 5px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
     }
-    .tech-icons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 32px;
-      justify-content: center;
-      align-items: center;
-      margin-top: 18px;
-    }
-    .tech-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 110px;
-      transition: transform 0.2s, box-shadow 0.2s, opacity 0.7s cubic-bezier(.33,.66,.66,1), transform 0.7s cubic-bezier(.33,.66,.66,1);
-      opacity: 0;
-      transform: translateY(50px);
-      will-change: opacity, transform;
-    }
-    .tech-item.visible {
-      opacity: 1;
-      transform: none;
-    }
-    .tech-item img {
-      width: 56px;
-      height: 56px;
-      margin-bottom: 8px;
-      filter: grayscale(30%);
-      transition: filter 0.2s, transform 0.2s;
-    }
-    .tech-item span {
-      font-size: 1em;
-      color: var(--secondary);
-      margin-top: 3px;
-      transition: color 0.4s;
-    }
-    body.dark .tech-item span {
-      color: #e6eaff;
-    }
-    .tech-item:hover {
-      transform: translateY(-7px) scale(1.07);
-      box-shadow: 0 6px 18px var(--light-shadow);
-    }
-    .tech-item:hover img {
-      filter: grayscale(0%);
-      transform: scale(1.15);
-    }
-    .contact-badges {
-      margin: 16px 0 0 0;
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      align-items: center;
-      opacity: 0;
-      transform: translateY(50px);
-      transition: opacity 0.7s cubic-bezier(.33,.66,.66,1), transform 0.7s cubic-bezier(.33,.66,.66,1);
-      will-change: opacity, transform;
-    }
-    .contact-badges.visible {
-      opacity: 1;
-      transform: none;
-    }
-    .badge-link {
-      display: inline-flex;
-      align-items: center;
-      padding: 7px 16px 7px 12px;
-      border-radius: 22px;
-      background: var(--accent);
-      color: #fff;
-      font-weight: 600;
-      font-size: 16px;
-      text-decoration: none;
-      transition: background 0.24s, box-shadow 0.24s, color 0.24s;
-      box-shadow: 0 2px 8px var(--light-shadow);
-      border: none;
-      outline: none;
-    }
-    .badge-link.email { background: var(--badge-email);}
-    .badge-link.github { background: var(--badge-github);}
-    .badge-link.linkedin { background: var(--badge-linkedin);}
-    .badge-link img {
-      width: 22px;
-      height: 22px;
-      margin-right: 7px;
-      border-radius: 50%;
-      background: #fff;
-      padding: 2px;
-    }
-    .badge-link:hover, .badge-link:focus {
+    .project-badge-home:hover, .project-badge-home:focus {
       background: #fff;
       color: var(--accent);
       box-shadow: 0 4px 16px var(--light-shadow);
     }
-    .badge-link.email:hover, .badge-link.email:focus { color: var(--badge-email);}
-    .badge-link.github:hover, .badge-link.github:focus { color: var(--badge-github);}
-    .badge-link.linkedin:hover, .badge-link.linkedin:focus { color: var(--badge-linkedin);}
-    .badge-link:hover img, .badge-link:focus img {
-      background: #eaeaea;
+    @media (max-width: 800px) {
+      .project-grid {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .project-badge-home {
+        width: 100%;
+        min-width: unset;
+        justify-content: flex-start;
+      }
     }
-    .dark .badge-link:hover, .dark .badge-link:focus {
+    .blog-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 13px 17px;
+      border-radius: 21px;
+      font-size: 1.15em;
+      font-weight: 600;
       color: #fff;
-      background: #333;
+      background: #7356bf;
+      margin-right: 18px;
+      box-shadow: 0 2px 8px var(--light-shadow);
+      text-decoration: none;
+      transition: background 0.2s, box-shadow 0.2s;
     }
-    /* Toggle Button */
-    .toggle-container {
-      position: fixed;
-      top: 20px;
-      right: 24px;
-      z-index: 100;
+    .blog-badge.teal { background: #207868; }
+    .blog-badge:hover, .blog-badge:focus {
+      background: #fff;
+      color: var(--accent);
+      box-shadow: 0 4px 16px var(--light-shadow);
+      text-decoration: underline;
+    }
+    .tech-item img {
+      width: 44px !important;
+      height: 44px !important;
+      max-width: 44px !important;
+      max-height: 44px !important;
+      margin-bottom: 7px;
+      filter: grayscale(30%);
+      transition: filter 0.2s, transform 0.2s;
+    }
+    /* Contact logos: make compact and wrap text inside the logo */
+    .contact-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 22px;
+      margin-top: 12px;
+    }
+    .badge-link {
       display: flex;
       align-items: center;
-      gap: 8px;
-    }
-    .toggle-label {
-      font-size: 15px;
-      font-family: inherit;
-      color: var(--secondary);
-      transition: color 0.4s;
-      cursor: pointer;
-      user-select: none;
-    }
-    body.dark .toggle-label { color: #b2c1e0; }
-    .toggle-switch {
-      width: 46px;
-      height: 26px;
-      border-radius: 18px;
-      background: #d7e7fa;
-      position: relative;
-      display: inline-block;
-      vertical-align: middle;
-      transition: background 0.4s;
-      cursor: pointer;
-    }
-    body.dark .toggle-switch { background: #233150; }
-    .toggle-switch input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-    .toggle-slider {
-      position: absolute;
-      top: 3px;
-      left: 3px;
-      width: 20px;
-      height: 20px;
-      background: #fff;
+      justify-content: center;
+      flex-direction: column;
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
-      transition: left 0.3s, background 0.4s;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+      background: #f1f5fb;
+      box-shadow: 0 2px 8px var(--light-shadow);
+      text-decoration: none;
+      color: var(--accent);
+      font-size: 0.9em;
+      font-weight: 700;
+      text-align: center;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+      padding: 0;
+      gap: 3px;
+      position: relative;
     }
-    .toggle-switch input:checked + .toggle-slider {
-      left: 23px;
+    body.dark .badge-link {
+      background: #222538;
+      color: #b2c1e0;
+      box-shadow: 0 2px 8px var(--dark-shadow);
+    }
+    .badge-link img {
+      width: 28px !important;
+      height: 28px !important;
+      max-width: 28px !important;
+      max-height: 28px !important;
+      margin: 0 auto 3px auto;
+      border-radius: 50%;
+      background: #fff;
+      padding: 2px;
+      display: block;
+    }
+    .badge-link span {
+      display: block;
+      font-size: 0.85em;
+      font-weight: 600;
+      color: inherit;
+      line-height: 1.1;
+      margin: 0;
+      padding: 0;
+      word-break: break-all;
+      text-align: center;
+    }
+    .badge-link:hover, .badge-link:focus {
       background: var(--accent);
-    }
-    @media (max-width: 660px) {
-      header {
-        flex-direction: column;
-        text-align: center;
-        padding: 30px 10px 22px 10px;
-      }
-      .profile-pic {
-        margin: 0 auto 18px auto;
-      }
-      .header-content {
-        min-width: 0;
-      }
-      .toggle-container {
-        right: 10px;
-        top: 10px;
-      }
-    }
-    @media (max-width: 500px) {
-      .project-badge, .badge-link {
-        font-size: 15px;
-        padding: 7px 11px 7px 9px;
-      }
-      .tech-item {
-        width: 95px;
-      }
-      header h1 {
-        font-size: 31px;
-      }
-      .typing-desc {
-        font-size: 16px;
-      }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      section, .project, .tech-item, .contact-badges {
-        opacity: 1 !important;
-        transform: none !important;
-        transition: none !important;
-      }
+      color: #fff;
+      box-shadow: 0 4px 16px var(--light-shadow);
     }
   </style>
 </head>
 <body>
-
 <div class="toggle-container">
   <label class="toggle-label" for="modeToggle">Dark mode</label>
   <span class="toggle-switch">
@@ -426,7 +379,11 @@
     <span class="toggle-slider"></span>
   </span>
 </div>
-
+<nav>
+  <a href="index.html">Home</a>
+  <a href="projects.html">Projects</a>
+  <a href="blogs.html">Blogs</a>
+</nav>
 <header>
   <img src="images/profile.jpg" alt="Nishant Malay Mishra" class="profile-pic">
   <img src="images/webpic.jpg" alt="Nishant Malay Mishra" class="profile-pic">
@@ -435,62 +392,72 @@
     <div class="typing-desc" id="typewriter"></div>
   </div>
 </header>
-
 <div class="container">
-
   <section id="about">
     <h2>About Me</h2>
-    <p>I’m a passionate AI and robotics enthusiast who enjoys building intelligent systems, automating things with Python, and bringing hardware to life with software. I’ve created real-time automation solutions like ASUP and am currently exploring gesture-based control systems, automation, and embedded projects.</p>
+    <p>
+      I’m a passionate AI and robotics enthusiast who enjoys building intelligent systems, automating things with Python, and bringing hardware to life with software. I’ve created real-time automation solutions like ASUP and am currently exploring gesture-based control systems, automation, and embedded projects.
+    </p>
   </section>
-
-  <section id="quote">
-    <h2>My Motto</h2>
-    <blockquote>"Learning never exhausts the mind, only ignites it further."</blockquote>
-  </section>
-
-  <section id="education">
-    <h2>Education Timeline</h2>
-    <ul>
-      <li><strong>2010 - 2016</strong> – Vagdevi Vilas School, Marathahalli</li>
-      <li><strong>2016 - 2024</strong> – Lake Montfort School</li>
-      <li><strong>2022</strong> – Class 10, Lake Montfort School</li>
-      <li><strong>2024</strong> – Class 12, Lake Montfort School</li>
-    </ul>
-  </section>
-
+  <!-- Achievements Section -->
   <section id="achievements">
     <h2>Achievements</h2>
     <ul>
-      <li>🏆 2016 – VMO Winner</li>
-      <li>🥇 BASE Quiz Winner – Team Champion, 2019</li>
-      <li>🎯 Finalist in Talentspire powered by IISc Bangalore – 2022</li>
-      <li>✅ Cleared JEE Mains with a strong rank in 2024 & 2025</li>
-      <li>✅ Cleared JEE Adv in 2025</li>
+      <li>2014- VMO Winner</li>
+      <li>2018- BASE Champs (Winners' Team)</li>
+      <li>2023- finalist in Talentspire Conducted by Divecha Centre and Indian Institute of Science</li>
+      <li>2024- Cleared JEE Mains </li>
+      <li>2025- Cleared JEE Mains, JEE Advanced and UG(A) & UG(B) of Indian Statistical Institute</li>
     </ul>
   </section>
-
   <section id="projects">
-    <h2>Projects</h2>
-    <div class="project">
-      <a class="project-badge purple" href="https://github.com/NishantMM/Gesture-Robot-Simulator" target="_blank">
-        🤖 Gesture Robot
+    <h2>
+      Projects
+      <a href="projects.html" style="float:right;font-size:0.8em;color:var(--accent);text-decoration:none;">See all &rarr;</a>
+    </h2>
+    <div class="project-grid">
+      <a class="project-badge-home purple" href="projects.html#automated-substitution-program">
+        📅
+        <span>Automated<br>Substitution Program</span>
       </a>
-      <span class="project-desc">Gesture-Controlled Robot Maze Simulator — Python + Pygame + OpenCV project where a robot navigates a dynamically generated maze using hand gestures for control and voice/keyboard overrides. Developed using cvzone and custom logic.</span>
-    </div>
-    <div class="project">
-      <a class="project-badge teal" href="https://github.com/NishantMM/cursor-controller" target="_blank">
-        🖱️ Cursor Control
+      <a class="project-badge-home teal" href="projects.html#gesture-robot-simulator">
+        🤖
+        <span>Gesture Robot<br>Simulator</span>
       </a>
-      <span class="project-desc">Cursor Controller with Hand Gestures — Uses OpenCV and PyAutoGUI to track hand gestures and control the mouse cursor. Designed for accessibility and touchless computing.</span>
-    </div>
-    <div class="project">
-      <a class="project-badge orange" href="https://github.com/NishantMM/ASUP" target="_blank">
-        📅 ASUP System
+      <a class="project-badge-home orange" href="projects.html#line-follower-simulation">
+        🛤️
+        <span>Line Follower<br>Simulation</span>
       </a>
-      <span class="project-desc">ASUP – Automated Substitution Program — A real-time program implemented in my school that dynamically assigns teacher substitutions based on availability and class schedules.</span>
+      <a class="project-badge-home blue" href="projects.html#optical-character-recognititon">
+        🔤
+        <span>Optical Character<br>Recognition</span>
+      </a>
+      <a class="project-badge-home green" href="projects.html#bluetooth-light-control">
+        💡
+        <span>Bluetooth Light<br>Control</span>
+      </a>
+      <a class="project-badge-home pink" href="projects.html#gesture-emotion-recognition">
+        😊
+        <span>Gesture Emotion<br>Recognition</span>
+      </a>
     </div>
   </section>
-
+  <section id="blogs">
+    <h2>Blogs</h2>
+    <p style="margin-bottom:18px">
+      Dive into my personal stories, discoveries, and lessons learned as I journeyed from childhood curiosity to teenage ambition. Whether you want to reminisce about the simple joys as a kid or reflect on the challenges and growth as a teen, there’s something for everyone!
+    </p>
+    <div class="project-grid">
+      <div>
+        <a class="blog-badge" href="blogs.html#life-kid">🧒 Life-Kid</a>
+        <a href="blogs.html#life-kid" style="font-size:0.97em;">Read more &rarr;</a>
+      </div>
+      <div>
+        <a class="blog-badge teal" href="blogs.html#life-teen">🧑 Life-Teen</a>
+        <a href="blogs.html#life-teen" style="font-size:0.97em;">Read more &rarr;</a>
+      </div>
+    </div>
+  </section>
   <section id="skills">
     <h2>Skills</h2>
     <ul>
@@ -500,7 +467,6 @@
       <li>AI/ML: Scikit-learn, TensorFlow (learning), NumPy, pandas</li>
     </ul>
   </section>
-
   <section id="tech-stack">
     <h2>Tech Stack</h2>
     <div class="tech-icons">
@@ -534,7 +500,6 @@
       </div>
     </div>
   </section>
-
   <section id="interests">
     <h2>Personal Interests</h2>
     <ul>
@@ -543,36 +508,28 @@
       <li>⚽ Loves playing football and tennis</li>
     </ul>
   </section>
-
   <section id="github">
     <h2>My GitHub Activity</h2>
     <img class="github-badge" src="https://github-readme-stats.vercel.app/api?username=NishantMM&show_icons=true&count_private=true&theme=default" alt="GitHub Stats">
   </section>
-
   <section id="contact">
     <h2>Contact</h2>
     <div class="contact-badges">
       <a class="badge-link email" href="mailto:nishant7937@gmail.com" target="_blank">
-        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/gmail.svg" alt="Gmail" style="background:#fff;">
-        Email
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/gmail.svg" alt="Gmail"><span>Email</span>
       </a>
       <a class="badge-link github" href="https://github.com/NishantMM" target="_blank">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub">
-        GitHub
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub"><span>GitHub</span>
       </a>
       <a class="badge-link linkedin" href="https://www.linkedin.com/in/nishantmalaymishra/" target="_blank">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn">
-        LinkedIn
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn"><span>LinkedIn</span>
       </a>
     </div>
   </section>
-
 </div>
-
 <footer>
   <p style="text-align: center; padding: 20px; color: gray">© 2025 Nishant Malay Mishra. All rights reserved.</p>
 </footer>
-
 <script>
   // Scroll reveal effect for sections, projects, tech-items, contact-badges
   const revealEls = [
@@ -597,12 +554,10 @@
     onScroll();
     setTimeout(onScroll, 100); // ensure for slow loads
   });
-
   // Typewriter effect: continuous loop
   const typeTarget = document.getElementById('typewriter');
   const sentences = [
     "AI & Robotics Enthusiast | Based in Bangalore"
-    // Add more phrases here to cycle through if you wish
   ];
   let sentenceIndex = 0;
   let charIndex = 0;
@@ -631,10 +586,8 @@
     }
   }
   typeWriterLoop();
-
   // Dark mode toggle
   const toggle = document.getElementById('modeToggle');
-  // Use local storage for persistence
   if(window.localStorage.getItem('theme') === 'dark') {
     document.body.classList.add('dark');
     toggle.checked = true;
@@ -648,6 +601,5 @@
     }
   });
 </script>
-
 </body>
 </html>
